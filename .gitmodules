@@ -19,3 +19,6 @@
 [submodule "stack-audit-aws-s3/extends"]
 	path = stack-audit-aws-s3/extends
 	url = git@github.com:CloudCoreo/audit-aws-s3.git
+[submodule "panel"]
+	path = panel
+	url = git@github.com:CloudCoreo/audit-panel.git
