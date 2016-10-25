@@ -17,17 +17,6 @@ This repo is designed to work with CloudCoreo. It will monitor all supported AWS
 ### `AUDIT_AWS_ALERT_RECIPIENT`:
   * description: email recipient for notification
 
-### `AUDIT_AWS_ALLOW_EMPTY`:
-  * description: receive empty reports?
-
-### `AUDIT_AWS_SEND_ON`:
-  * description: always or change
-  * default: change
-
-### `AUDIT_AWS_PAYLOAD_TYPE`:
-  * description: json or text
-  * default: json
-
 ### `AUDIT_AWS_CLOUDTRAIL_ALERT_LIST`:
   * description: alert list for generating notifications
   * default: cloudtrail-service-disabled
@@ -56,6 +45,21 @@ This repo is designed to work with CloudCoreo. It will monitor all supported AWS
   * description: alert list for generating notifications
   * default: s3-allusers-write,s3-allusers-write-acp,s3-allusers-read,s3-authenticatedusers-write,s3-authenticatedusers-write-acp,s3-authenticatedusers-read,s3-logging-disabled,s3-world-open-policy-delete,s3-world-open-policy-get,s3-world-open-policy-list,s3-world-open-policy-put,s3-world-open-policy-all,s3-only-ip-based-policy
 
+### `AUDIT_AWS_S3_SEND_ON`:
+  * description: always or change
+  * default: change
+
+### `AUDIT_AWS_ALLOW_EMPTY`:
+  * description: receive empty reports?
+
+### `AUDIT_AWS_SEND_ON`:
+  * description: always or change
+  * default: change
+
+### `AUDIT_AWS_PAYLOAD_TYPE`:
+  * description: json or text
+  * default: json
+
 ### `AUDIT_AWS_REGIONS`:
   * description: list of AWS regions to check. Default is all regions
   * default: us-east-1,us-west-1,us-west-2
@@ -66,10 +70,12 @@ This repo is designed to work with CloudCoreo. It will monitor all supported AWS
 
 ## Tags
 
+1. CATEGORY_AUDIT
 1. Audit
 1. Best Practices
 1. Alert
 1. AWS
+
 
 ## Diagram
 
