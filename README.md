@@ -76,6 +76,9 @@ This repo is designed to work with CloudCoreo. It will monitor all supported AWS
 1. Alert
 1. AWS
 
+## Categories
+
+1. Audit
 
 ## Diagram
 
