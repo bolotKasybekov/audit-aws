@@ -70,7 +70,6 @@ This repo is designed to work with CloudCoreo. It will monitor all supported AWS
 
 ## Tags
 
-1. CATEGORY_AUDIT
 1. Audit
 1. Best Practices
 1. Alert
