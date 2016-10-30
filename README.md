@@ -6,6 +6,7 @@ This stack will monitor supported AWS services and alert on things CloudCoreo de
 ## Description
 This repo is designed to work with CloudCoreo. It will monitor all supported AWS services against best practices for you and send a report to the email address designated by the config.yaml AUDIT&#95;AWS&#95;ALERT&#95;RECIPIENT value
 
+
 ## Hierarchy
 ![composite inheritance hierarchy](https://raw.githubusercontent.com/CloudCoreo/audit-aws/master/images/hierarchy.png "composite inheritance hierarchy")
 
