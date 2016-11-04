@@ -119,7 +119,7 @@ variables:
             - AUDIT_AWS_REDSHIFT_SEND_ON
             - AUDIT_AWS_RDS_SEND_ON
             - AUDIT_AWS_IAM_SEND_ON
-            - AUDIT_AWS_S3_SEND_ON_ON
+            - AUDIT_AWS_S3_SEND_ON
         description: always or change
         required: true
         type: string
