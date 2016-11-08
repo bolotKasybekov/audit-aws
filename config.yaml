@@ -93,11 +93,6 @@ variables:
             - s3-world-open-policy-put
             - s3-world-open-policy-all
             - s3-only-ip-based-policy
-    AUDIT_AWS_S3_SEND_ON:
-        description: always or change
-        required: true
-        type: string
-        default: change
     AUDIT_AWS_ALLOW_EMPTY:
         overrides:
             - AUDIT_AWS_CLOUDTRAIL_ALLOW_EMPTY
