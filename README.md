@@ -48,10 +48,6 @@ This repo is designed to work with CloudCoreo. It will monitor all supported AWS
   * description: alert list for generating notifications
   * default: s3-allusers-write, s3-allusers-write-acp, s3-allusers-read, s3-authenticatedusers-write, s3-authenticatedusers-write-acp, s3-authenticatedusers-read, s3-logging-disabled, s3-world-open-policy-delete, s3-world-open-policy-get, s3-world-open-policy-list, s3-world-open-policy-put, s3-world-open-policy-all, s3-only-ip-based-policy
 
-### `AUDIT_AWS_S3_SEND_ON`:
-  * description: always or change
-  * default: change
-
 ### `AUDIT_AWS_ALLOW_EMPTY`:
   * description: receive empty reports?
   * default: false
