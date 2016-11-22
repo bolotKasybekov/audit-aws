@@ -65,12 +65,12 @@ This repo is designed to work with CloudCoreo. It will monitor all supported AWS
   * default: us-east-1, us-west-1, us-west-2
 
 
-## Optional variables with no default
+## Optional variables with default
 
 **None**
 
 
-## Optional variables with default
+## Optional variables with no default
 
 **None**
 
