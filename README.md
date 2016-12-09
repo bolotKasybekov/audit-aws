@@ -90,5 +90,5 @@ This repo is designed to work with CloudCoreo. It will monitor all supported AWS
 
 
 ## Icon
-
+![icon](https://raw.githubusercontent.com/CloudCoreo/audit-aws/master/images/icon.png "icon")
 
