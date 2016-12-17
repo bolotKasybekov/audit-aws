@@ -119,20 +119,20 @@ variables:
         required: true
         type: string
         default: change
-    AUDIT_AWS_PAYLOAD_TYPE:
+    AUDIT_AWS_OWNER_TAG:
         overrides:
-            - AUDIT_AWS_CLOUDTRAIL_PAYLOAD_TYPE
-            - AUDIT_AWS_EC2_PAYLOAD_TYPE
-            - AUDIT_AWS_ELB_PAYLOAD_TYPE
-            - AUDIT_AWS_REDSHIFT_PAYLOAD_TYPE
-            - AUDIT_AWS_RDS_PAYLOAD_TYPE
-            - AUDIT_AWS_IAM_PAYLOAD_TYPE
-            - AUDIT_AWS_S3_PAYLOAD_TYPE
-        description: json or text
+            - AUDIT_AWS_CLOUDTRAIL_OWNER_TAG
+            - AUDIT_AWS_EC2_OWNER_TAG
+            - AUDIT_AWS_ELB_OWNER_TAG
+            - AUDIT_AWS_REDSHIFT_OWNER_TAG
+            - AUDIT_AWS_RDS_OWNER_TAG
+            - AUDIT_AWS_IAM_OWNER_TAG
+            - AUDIT_AWS_S3_OWNER_TAG
+        description: "Enter an AWS tag whose value is an email address of owner of the ELB object. (Optional)"
         required: true
         type: string
-        default: json
-    AUDIT_AWS_REGIONS:
+        default: "NOT_A_TAG"
+  AUDIT_AWS_REGIONS:
         overrides:
             - AUDIT_AWS_CLOUDTRAIL_REGIONS
             - AUDIT_AWS_EC2_REGIONS

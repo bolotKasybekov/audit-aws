@@ -82,7 +82,7 @@ coreo_uni_util_notify "advise-aws" do
    "s3_violations_ignored":"COMPOSITE::coreo_aws_advisor_s3.advise-s3.number_ignored_violations",
    "violations": COMPOSITE::coreo_aws_advisor_s3.advise-s3.report }
   }}'
-  payload_type "${AUDIT_AWS_PAYLOAD_TYPE}"
+  payload_type "json"
   endpoint ({ 
               :to => '${AUDIT_AWS_ALERT_RECIPIENT}', :subject => 'CloudCoreo advisor alerts on PLAN::stack_name :: PLAN::name'
             })
