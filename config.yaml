@@ -131,7 +131,7 @@ variables:
         required: true
         type: string
         default: "NOT_A_TAG"
-  AUDIT_AWS_REGIONS:
+    AUDIT_AWS_REGIONS:
         overrides:
             - AUDIT_AWS_CLOUDTRAIL_REGIONS
             - AUDIT_AWS_EC2_REGIONS
