@@ -56,9 +56,9 @@ This repo is designed to work with CloudCoreo. It will monitor all supported AWS
   * description: always or change
   * default: change
 
-### `AUDIT_AWS_PAYLOAD_TYPE`:
-  * description: json or text
-  * default: json
+### `AUDIT_AWS_OWNER_TAG`:
+  * description: Enter an AWS tag whose value is an email address of owner of the ELB object. (Optional)
+  * default: NOT_A_TAG
 
 ### `AUDIT_AWS_REGIONS`:
   * description: list of AWS regions to check. Default is all regions
