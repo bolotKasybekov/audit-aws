@@ -8,10 +8,74 @@ variables:
             - AUDIT_AWS_RDS_ALERT_RECIPIENT
             - AUDIT_AWS_IAM_ALERT_RECIPIENT
             - AUDIT_AWS_S3_ALERT_RECIPIENT
-        description: email recipient for notification
+        description: "Enter the email address(es) that will receive notifications. If more than one, separate each with a comma."
         required: true
         type: string
-        default: null
+        default:
+    AUDIT_AWS_HTML_REPORT:
+      overrides:
+          - AUDIT_AWS_CLOUDTRAIL_HTML_REPORT
+          - AUDIT_AWS_EC2_HTML_REPORT
+          - AUDIT_AWS_ELB_HTML_REPORT
+          - AUDIT_AWS_REDSHIFT_HTML_REPORT
+          - AUDIT_AWS_RDS_HTML_REPORT
+          - AUDIT_AWS_IAM_HTML_REPORT
+          - AUDIT_AWS_S3_HTML_REPORT
+      description: "Would you like to send the AWS owner tag report(s)? Options - notify / nothing. Default is no / nothing."
+      required: true
+      type: string
+      default: "notify"
+    AUDIT_AWS_ROLLUP_REPORT:
+      overrides:
+        - AUDIT_AWS_CLOUDTRAIL_ROLLUP_REPORT
+        - AUDIT_AWS_EC2_ROLLUP_REPORT
+        - AUDIT_AWS_ELB_ROLLUP_REPORT
+        - AUDIT_AWS_REDSHIFT_ROLLUP_REPORT
+        - AUDIT_AWS_RDS_ROLLUP_REPORT
+        - AUDIT_AWS_IAM_ROLLUP_REPORT
+        - AUDIT_AWS_S3_ROLLUP_REPORT
+      description: "Would you like to send a Summary AWS report? Options - notify / nothing. Default is no / nothing."
+      required: true
+      type: string
+      default: "nothing"
+    AUDIT_AWS_ALLOW_EMPTY:
+      overrides:
+          - AUDIT_AWS_CLOUDTRAIL_ALLOW_EMPTY
+          - AUDIT_AWS_EC2_ALLOW_EMPTY
+          - AUDIT_AWS_ELB_ALLOW_EMPTY
+          - AUDIT_AWS_REDSHIFT_ALLOW_EMPTY
+          - AUDIT_AWS_RDS_ALLOW_EMPTY
+          - AUDIT_AWS_IAM_ALLOW_EMPTY
+          - AUDIT_AWS_S3_ALLOW_EMPTY
+      description: "Would you like to receive empty reports? Options - true / false. Default is true."
+      required: true
+      type: string
+      default: false
+    AUDIT_AWS_SEND_ON:
+        overrides:
+            - AUDIT_AWS_CLOUDTRAIL_SEND_ON
+            - AUDIT_AWS_EC2_SEND_ON
+            - AUDIT_AWS_ELB_SEND_ON
+            - AUDIT_AWS_REDSHIFT_SEND_ON
+            - AUDIT_AWS_RDS_SEND_ON
+            - AUDIT_AWS_IAM_SEND_ON
+            - AUDIT_AWS_S3_SEND_ON
+        description: "Send reports always or only when there is a change? Options - always / change. Default is always."
+        required: true
+        type: string
+        default: "change"
+    AUDIT_AWS_OWNER_TAG:
+      overrides:
+          - AUDIT_AWS_CLOUDTRAIL_OWNER_TAG
+          - AUDIT_AWS_EC2_OWNER_TAG
+          - AUDIT_AWS_ELB_OWNER_TAG
+          - AUDIT_AWS_REDSHIFT_OWNER_TAG
+          - AUDIT_AWS_RDS_OWNER_TAG
+          - AUDIT_AWS_S3_OWNER_TAG
+      description:
+      required: true
+      type: string
+      default: "NOT_A_TAG"
     AUDIT_AWS_CLOUDTRAIL_ALERT_LIST:
         description: alert list for generating notifications
         required: true
@@ -56,6 +120,8 @@ variables:
         type: array
         default:
             - elb-old-ssl-policy
+            - elb-current-ssl-policy
+            - elb-inventory
     AUDIT_AWS_EC2_ALERT_LIST:
         description: alert list for generating notifications
         required: true
@@ -93,44 +159,6 @@ variables:
             - s3-world-open-policy-put
             - s3-world-open-policy-all
             - s3-only-ip-based-policy
-    AUDIT_AWS_ALLOW_EMPTY:
-        overrides:
-            - AUDIT_AWS_CLOUDTRAIL_ALLOW_EMPTY
-            - AUDIT_AWS_EC2_ALLOW_EMPTY
-            - AUDIT_AWS_ELB_ALLOW_EMPTY
-            - AUDIT_AWS_REDSHIFT_ALLOW_EMPTY
-            - AUDIT_AWS_RDS_ALLOW_EMPTY
-            - AUDIT_AWS_IAM_ALLOW_EMPTY
-            - AUDIT_AWS_S3_ALLOW_EMPTY
-        description: receive empty reports?
-        required: true
-        type: boolean
-        default: false
-    AUDIT_AWS_SEND_ON:
-        overrides:
-            - AUDIT_AWS_CLOUDTRAIL_SEND_ON
-            - AUDIT_AWS_EC2_SEND_ON
-            - AUDIT_AWS_ELB_SEND_ON
-            - AUDIT_AWS_REDSHIFT_SEND_ON
-            - AUDIT_AWS_RDS_SEND_ON
-            - AUDIT_AWS_IAM_SEND_ON
-            - AUDIT_AWS_S3_SEND_ON
-        description: always or change
-        required: true
-        type: string
-        default: change
-    AUDIT_AWS_OWNER_TAG:
-        overrides:
-            - AUDIT_AWS_CLOUDTRAIL_OWNER_TAG
-            - AUDIT_AWS_EC2_OWNER_TAG
-            - AUDIT_AWS_ELB_OWNER_TAG
-            - AUDIT_AWS_REDSHIFT_OWNER_TAG
-            - AUDIT_AWS_RDS_OWNER_TAG
-            - AUDIT_AWS_S3_OWNER_TAG
-        description: "Enter an AWS tag whose value is an email address of owner of the ELB object. (Optional)"
-        required: true
-        type: string
-        default: "NOT_A_TAG"
     AUDIT_AWS_REGIONS:
         overrides:
             - AUDIT_AWS_CLOUDTRAIL_REGIONS
@@ -138,20 +166,9 @@ variables:
             - AUDIT_AWS_ELB_REGIONS
             - AUDIT_AWS_REDSHIFT_REGIONS
             - AUDIT_AWS_RDS_REGIONS
-            - AUDIT_AWS_IAM_REGIONS
             - AUDIT_AWS_S3_REGIONS
         description: list of AWS regions to check. Default is all regions
         required: true
         type: array
         default:
             - us-east-1
-            - us-west-1
-            - us-west-2
-#            - ap-south-1
-#            - ap-northeast-1
-#            - ap-northeast-2
-#            - ap-southeast-1
-#            - ap-southeast-2
-#            - eu-central-1
-#            - eu-west-1
-#            - sa-east-1
