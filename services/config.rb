@@ -69,7 +69,7 @@ end
 
 
 coreo_uni_util_notify "advise-aws-full-json" do
-  action :notify
+  action :nothing
   type 'email'
   allow_empty ${AUDIT_AWS_ALLOW_EMPTY}
   send_on "${AUDIT_AWS_SEND_ON}"
@@ -125,7 +125,7 @@ coreo_uni_util_jsrunner "tags-to-notifiers-array-aws" do
   packages([
                {
                    :name => "cloudcoreo-jsrunner-commons",
-                   :version => "1.3.9"
+                   :version => "1.4.0"
                }       ])
   json_input '
   {"composite name":"PLAN::stack_name","plan name":"PLAN::name", "services": {
