@@ -69,7 +69,7 @@ end
 
 
 coreo_uni_util_notify "advise-aws-full-json" do
-  action :nothing
+  action :notify
   type 'email'
   allow_empty ${AUDIT_AWS_ALLOW_EMPTY}
   send_on "${AUDIT_AWS_SEND_ON}"
