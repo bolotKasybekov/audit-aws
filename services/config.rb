@@ -281,7 +281,7 @@ const VARIABLES_IAM = {
 };
 
 
-const cloudtrail = new CloudCoreoJSRunner(json_input['services']['cloudtrail'].violations, VARIABLES_CLOUDTRAIL);
+const cloudtrail = new CloudCoreoJSRunner(json_input['services']['cloudtrail'], VARIABLES_CLOUDTRAIL);
 const ec2 = new CloudCoreoJSRunner(JSON['services']['ec2'], VARIABLES_EC2);
 const elb = new CloudCoreoJSRunner(JSON['services']['elb'], VARIABLES_ELB);
 const rds = new CloudCoreoJSRunner(JSON['services']['rds'], VARIABLES_RDS);
