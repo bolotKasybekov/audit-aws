@@ -21,7 +21,7 @@ variables:
           - AUDIT_AWS_RDS_HTML_REPORT
           - AUDIT_AWS_IAM_HTML_REPORT
           - AUDIT_AWS_S3_HTML_REPORT
-      description: "Would you like to send the AWS owner tag report(s)? Options - notify / nothing. Default is no / nothing."
+      description: "Would you like to send the AWS owner tag report(s)? Options - notify / nothing. Default is notify."
       required: true
       type: string
       default: "notify"
@@ -34,7 +34,7 @@ variables:
         - AUDIT_AWS_RDS_ROLLUP_REPORT
         - AUDIT_AWS_IAM_ROLLUP_REPORT
         - AUDIT_AWS_S3_ROLLUP_REPORT
-      description: "Would you like to send a Summary AWS report? Options - notify / nothing. Default is no / nothing."
+      description: "Would you like to send a Summary AWS report? Options - notify / nothing. Default is nothing."
       required: true
       type: string
       default: "nothing"
@@ -47,7 +47,7 @@ variables:
           - AUDIT_AWS_RDS_ALLOW_EMPTY
           - AUDIT_AWS_IAM_ALLOW_EMPTY
           - AUDIT_AWS_S3_ALLOW_EMPTY
-      description: "Would you like to receive empty reports? Options - true / false. Default is true."
+      description: "Would you like to receive empty reports? Options - true / false. Default is false."
       required: true
       type: string
       default: false
@@ -60,7 +60,7 @@ variables:
             - AUDIT_AWS_RDS_SEND_ON
             - AUDIT_AWS_IAM_SEND_ON
             - AUDIT_AWS_S3_SEND_ON
-        description: "Send reports always or only when there is a change? Options - always / change. Default is always."
+        description: "Send reports always or only when there is a change? Options - always / change. Default is change."
         required: true
         type: string
         default: "change"
@@ -72,18 +72,18 @@ variables:
           - AUDIT_AWS_REDSHIFT_OWNER_TAG
           - AUDIT_AWS_RDS_OWNER_TAG
           - AUDIT_AWS_S3_OWNER_TAG
-      description:
+      description: "Enter an AWS tag whose value is an email address of the owner of the AWS services being audited. (Optional)"
       required: true
       type: string
       default: "NOT_A_TAG"
     AUDIT_AWS_CLOUDTRAIL_ALERT_LIST:
-        description: alert list for generating notifications
+        description: "Which alerts would you like to check for? Default is all Cloudtrail alerts."
         required: true
         type: array
         default:
             - cloudtrail-service-disabled
     AUDIT_AWS_REDSHIFT_ALERT_LIST:
-        description: alert list for generating notifications
+        description: "Which alerts would you like to check for? Default is all Redshift alerts."
         required: true
         type: array
         default:
@@ -93,13 +93,13 @@ variables:
             - redshift-no-require-ssl
             - redshift-no-user-logging
     AUDIT_AWS_RDS_ALERT_LIST:
-        description: alert list for generating notifications
+        description: "Which alerts would you like to check for? Default is all RDS alerts."
         required: true
         type: array
         default:
             - rds-short-backup-retention-period
     AUDIT_AWS_IAM_ALERT_LIST:
-        description: alert list for generating notifications
+        description: "Which alerts would you like to check for? Default is all IAM alerts."
         required: true
         type: array
         default:
@@ -115,7 +115,7 @@ variables:
             - iam-root-active-password
             - iam-user-attached-policies
     AUDIT_AWS_ELB_ALERT_LIST:
-        description: alert list for generating notifications
+        description: "Which alerts would you like to check for? Default is all ELB alerts."
         required: true
         type: array
         default:
@@ -123,7 +123,7 @@ variables:
             - elb-current-ssl-policy
             - elb-inventory
     AUDIT_AWS_EC2_ALERT_LIST:
-        description: alert list for generating notifications
+        description: "Which alerts would you like to check for? Default is all EC2 alerts."
         required: true
         type: array
         default:
@@ -142,7 +142,7 @@ variables:
             - ec2-TCP-20
             - ec2-ports-range
     AUDIT_AWS_S3_ALERT_LIST:
-        description: alert list for generating notifications
+        description: "Which alerts would you like to check for? Default is all S3 alerts."
         required: true
         type: array
         default:
@@ -167,7 +167,7 @@ variables:
             - AUDIT_AWS_REDSHIFT_REGIONS
             - AUDIT_AWS_RDS_REGIONS
             - AUDIT_AWS_S3_REGIONS
-        description: list of AWS regions to check. Default is all regions
+        description: "List of AWS regions to check. Default is us-east-1."
         required: true
         type: array
         default:
