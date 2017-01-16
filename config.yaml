@@ -21,7 +21,7 @@ variables:
           - AUDIT_AWS_RDS_HTML_REPORT
           - AUDIT_AWS_IAM_HTML_REPORT
           - AUDIT_AWS_S3_HTML_REPORT
-      description: "Would you like to send the AWS owner tag report(s)? Options - notify / nothing. Default is nothing."
+      description: "Would you like to send the AWS owner tag report(s)? Options - notify / nothing. Default is notify."
       required: true
       type: string
       default: "notify"
@@ -47,7 +47,7 @@ variables:
           - AUDIT_AWS_RDS_ALLOW_EMPTY
           - AUDIT_AWS_IAM_ALLOW_EMPTY
           - AUDIT_AWS_S3_ALLOW_EMPTY
-      description: "Would you like to receive empty reports? Options - true / false. Default is true."
+      description: "Would you like to receive empty reports? Options - true / false. Default is false."
       required: true
       type: string
       default: false
@@ -60,7 +60,7 @@ variables:
             - AUDIT_AWS_RDS_SEND_ON
             - AUDIT_AWS_IAM_SEND_ON
             - AUDIT_AWS_S3_SEND_ON
-        description: "Send reports always or only when there is a change? Options - always / change. Default is always."
+        description: "Send reports always or only when there is a change? Options - always / change. Default is change."
         required: true
         type: string
         default: "change"
@@ -72,7 +72,7 @@ variables:
           - AUDIT_AWS_REDSHIFT_OWNER_TAG
           - AUDIT_AWS_RDS_OWNER_TAG
           - AUDIT_AWS_S3_OWNER_TAG
-      description:
+      description: "Enter an AWS tag whose value is an email address of the owner of the AWS services being audited. (Optional)"
       required: true
       type: string
       default: "NOT_A_TAG"
