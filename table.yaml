@@ -20,11 +20,11 @@ ec2-inventory-instances:
   "Instance Type": "+__OBJECT__.violations.__RULE__.violating_object.0.object.instance_type+"
   "VPC": "+__OBJECT__.violations.__RULE__.violating_object.0.object.vpc_id+"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
-  "AWS Tags": “_``_TAGS__”`
+  "AWS Tags": "__TAGS__"  
 ec2-inventory-security-groups:
   "Security Group": "__OBJECT__~https://console.aws.amazon.com/ec2/v2/home?region=+__OBJECT__.violations.__RULE__.region+#SecurityGroups:search=+__OBJECT__+;sort=desc:tag:Name"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
-  "AWS Tags": “_``_TAGS__”`
+  "AWS Tags": "__TAGS__"  
 ec2-ip-address-whitelisted: 
   "AWS Object ID": "__OBJECT__~https://console.aws.amazon.com/ec2/v2/home?region=+__OBJECT__.violations.__RULE__.region+#SecurityGroups:search=+__OBJECT__+;sort=desc:tag:Name"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
