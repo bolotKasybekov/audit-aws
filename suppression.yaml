@@ -16,7 +16,7 @@ ec2-inventory-instances:
 ec2-inventory-security-groups:
   - put-your-object-id-here-1: ""
   - put-your-object-id-here-2: "2017-01-10T00:00Z"
-ec2-ip-address-whitelisted: PUT THE BELOW IN THE ABOVE :F :D 
+ec2-ip-address-whitelisted: 
   - put-your-object-id-here-1: ""
   - put-your-object-id-here-2: "2017-01-10T00:00Z"
 ec2-unrestricted-traffic:
