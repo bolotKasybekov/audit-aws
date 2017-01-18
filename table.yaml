@@ -25,7 +25,7 @@ ec2-inventory-security-groups:
   "Security Group": "__OBJECT__~https://console.aws.amazon.com/ec2/v2/home?region=+__OBJECT__.violations.__RULE__.region+#SecurityGroups:search=+__OBJECT__+;sort=desc:tag:Name"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": “_``_TAGS__”`
-ec2-ip-address-whitelisted: PUT THE BELOW IN THE ABOVE :F :D 
+ec2-ip-address-whitelisted: 
   "AWS Object ID": "__OBJECT__~https://console.aws.amazon.com/ec2/v2/home?region=+__OBJECT__.violations.__RULE__.region+#SecurityGroups:search=+__OBJECT__+;sort=desc:tag:Name"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": "__TAGS__"
