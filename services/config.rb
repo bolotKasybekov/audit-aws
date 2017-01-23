@@ -59,6 +59,98 @@ end
 coreo_uni_util_notify "advise-s3-rollup" do
   action :nothing
 end
+
+coreo_uni_util_jsrunner "jsrunner-process-suppression-cloudtrail" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "jsrunner-process-table-cloudtrail" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "cloudtrail-tags-to-notifiers-array" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "cloudtrail-tags-rollup" do
+  action :nothing
+end
+
+coreo_uni_util_jsrunner "jsrunner-process-suppression-ec2" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "jsrunner-process-table-ec2" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "ec2-tags-to-notifiers-array" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "ec2-tags-rollup" do
+  action :nothing
+end
+
+coreo_uni_util_jsrunner "jsrunner-process-suppression-elb" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "jsrunner-process-table-elb" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "elb-tags-to-notifiers-array" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "elb-tags-rollup" do
+  action :nothing
+end
+
+coreo_uni_util_jsrunner "jsrunner-process-suppression-iam" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "jsrunner-process-table-iam" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "tags-to-notifiers-array-iam" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "tags-rollup-iam" do
+  action :nothing
+end
+
+coreo_uni_util_jsrunner "jsrunner-process-suppression-rds" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "jsrunner-process-table-rds" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "tags-to-notifiers-array-rds" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "tags-rollup-rds" do
+  action :nothing
+end
+
+coreo_uni_util_jsrunner "jsrunner-process-suppression-redshift" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "jsrunner-process-table-redshift" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "tags-to-notifiers-array-redshift" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "tags-rollup-redshift" do
+  action :nothing
+end
+
+coreo_uni_util_jsrunner "jsrunner-process-suppression-s3" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "jsrunner-process-table-s3" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "tags-to-notifiers-array-s3" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "tags-rollup-s3" do
+  action :nothing
+end
+
 # test
 
 =begin
