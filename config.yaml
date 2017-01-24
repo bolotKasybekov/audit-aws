@@ -21,7 +21,7 @@ variables:
           - AUDIT_AWS_RDS_HTML_REPORT
           - AUDIT_AWS_IAM_HTML_REPORT
           - AUDIT_AWS_S3_HTML_REPORT
-      description: "Would you like to send the AWS owner tag report(s)? Options - notify / nothing. Default is notify."
+      description: "Would you like to send the AWS owner tag report(s)? Options - notify / nothing. Default is nothing."
       required: true
       type: string
       default: "nothing"
