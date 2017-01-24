@@ -160,6 +160,176 @@ end
 =end
 
 
+
+
+
+
+coreo_uni_util_jsrunner "splice-violation-object" do
+  action :run
+  data_type "json"
+  packages([
+               {
+                   :name => "cloudcoreo-jsrunner-commons",
+                   :version => "1.4.1"
+               }       ])
+  json_input '
+  {"composite name":"PLAN::stack_name","plan name":"PLAN::name", "services": {
+  "cloudtrail": {
+   "composite name":"PLAN::stack_name",
+   "plan name":"PLAN::name",
+   "audit name": "CloudTrail",
+   "violations": COMPOSITE::coreo_aws_advisor_cloudtrail.advise-cloudtrail.report },
+  "ec2": {
+   "audit name": "EC2",
+   "violations": COMPOSITE::coreo_aws_advisor_ec2.advise-ec2.report },
+  "iam": {
+   "audit name": "IAM",
+   "violations": COMPOSITE::coreo_aws_advisor_iam.advise-iam.report },
+  "elb": {
+   "audit name": "ELB",
+   "violations": COMPOSITE::coreo_aws_advisor_elb.advise-elb.report },
+  "rds": {
+   "audit name": "RDS",
+   "violations": COMPOSITE::coreo_aws_advisor_rds.advise-rds.report },
+  "redshift": {
+   "audit name": "REDSHIFT",
+   "violations": COMPOSITE::coreo_aws_advisor_redshift.advise-redshift.report },
+  "s3": {
+   "audit name": "S3",
+   "violations": COMPOSITE::coreo_aws_advisor_s3.advise-s3.report }
+  }}'
+  function <<-EOH
+  const wayToServices = JSON_INPUT['services'];
+  const auditStackKeys = Object.keys(wayToServices);
+  let newViolation = {};
+  console.log(JSON_INPUT);
+  auditStackKeys.forEach(auditStackKey => {
+      let wayForViolation = wayToServices[auditStackKey]['violations'];
+      if(wayForViolation.hasOwnProperty('violations')) {
+          wayForViolation = wayForViolation['violations'];
+      }
+      const violationKeys = Object.keys(wayForViolation);
+      violationKeys.forEach(violation => {
+          if(!newViolation.hasOwnProperty(violation)) {
+              newViolation[violation] = wayForViolation[violation];
+          }
+      });
+  
+  });
+  callback(newViolation);
+  EOH
+end
+
+
+coreo_uni_util_jsrunner "jsrunner-process-suppression" do
+  action :run
+  provide_composite_access true
+  json_input '{"violations":COMPOSITE::coreo_uni_util_jsrunner.splice-violation-object.return}'
+  packages([
+               {
+                   :name => "js-yaml",
+                   :version => "3.7.0"
+               }       ])
+  function <<-EOH
+  var fs = require('fs');
+  var yaml = require('js-yaml');
+  let suppression;
+  try {
+      suppression = yaml.safeLoad(fs.readFileSync('./suppression.yaml', 'utf8'));
+  } catch (e) {
+  }
+  coreoExport('suppression', JSON.stringify(suppression));
+  var violations = json_input.violations;
+  var result = {};
+    var file_date = null;
+    for (var violator_id in violations) {
+        result[violator_id] = {};
+        result[violator_id].tags = violations[violator_id].tags;
+        result[violator_id].violations = {}
+        for (var rule_id in violations[violator_id].violations) {
+            is_violation = true;
+ 
+            result[violator_id].violations[rule_id] = violations[violator_id].violations[rule_id];
+            for (var suppress_rule_id in suppression) {
+                for (var suppress_violator_num in suppression[suppress_rule_id]) {
+                    for (var suppress_violator_id in suppression[suppress_rule_id][suppress_violator_num]) {
+                        file_date = null;
+                        var suppress_obj_id_time = suppression[suppress_rule_id][suppress_violator_num][suppress_violator_id];
+                        if (rule_id === suppress_rule_id) {
+ 
+                            if (violator_id === suppress_violator_id) {
+                                var now_date = new Date();
+ 
+                                if (suppress_obj_id_time === "") {
+                                    suppress_obj_id_time = new Date();
+                                } else {
+                                    file_date = suppress_obj_id_time;
+                                    suppress_obj_id_time = file_date;
+                                }
+                                var rule_date = new Date(suppress_obj_id_time);
+                                if (isNaN(rule_date.getTime())) {
+                                    rule_date = new Date(0);
+                                }
+ 
+                                if (now_date <= rule_date) {
+ 
+                                    is_violation = false;
+ 
+                                    result[violator_id].violations[rule_id]["suppressed"] = true;
+                                    if (file_date != null) {
+                                        result[violator_id].violations[rule_id]["suppressed_until"] = file_date;
+                                        result[violator_id].violations[rule_id]["suppression_expired"] = false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+ 
+                }
+            }
+            if (is_violation) {
+ 
+                if (file_date !== null) {
+                    result[violator_id].violations[rule_id]["suppressed_until"] = file_date;
+                    result[violator_id].violations[rule_id]["suppression_expired"] = true;
+                } else {
+                    result[violator_id].violations[rule_id]["suppression_expired"] = false;
+                }
+                result[violator_id].violations[rule_id]["suppressed"] = false;
+            }
+        }
+    }
+ 
+    var rtn = result;
+  
+  var rtn = result;
+  
+  callback(result);
+  EOH
+end
+
+coreo_uni_util_jsrunner "jsrunner-process-table" do
+  action :run
+  provide_composite_access true
+  json_input '{"violations":COMPOSITE::coreo_aws_advisor_ec2.advise-ec2-atk.report}'
+  packages([
+               {
+                   :name => "js-yaml",
+                   :version => "3.7.0"
+               }       ])
+  function <<-EOH
+    var fs = require('fs');
+    var yaml = require('js-yaml');
+    try {
+        var table = yaml.safeLoad(fs.readFileSync('./table.yaml', 'utf8'));
+    } catch (e) {
+    }
+    coreoExport('table', JSON.stringify(table));
+    callback(table);
+  EOH
+end
+
+
 coreo_uni_util_notify "advise-aws-full-json" do
   action :nothing
   type 'email'
