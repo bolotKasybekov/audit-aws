@@ -78,7 +78,7 @@ variables:
       default: "NOT_A_TAG"
     AUDIT_AWS_CLOUDTRAIL_ALERT_LIST:
         description: "Which alerts would you like to check for? Default is all Cloudtrail alerts."
-        required: true
+        required: false
         type: array
         default:
             - cloudtrail-service-disabled
@@ -86,7 +86,7 @@ variables:
             - cloudtrail-inventory
     AUDIT_AWS_REDSHIFT_ALERT_LIST:
         description: "Which alerts would you like to check for? Default is all Redshift alerts."
-        required: true
+        required: false
         type: array
         default:
             - redshift-publicly-accessible
@@ -98,7 +98,7 @@ variables:
             - redshift-inventory
     AUDIT_AWS_RDS_ALERT_LIST:
         description: "Which alerts would you like to check for? Default is all RDS alerts."
-        required: true
+        required: false
         type: array
         default:
             - rds-short-backup-retention-period
@@ -107,7 +107,7 @@ variables:
             - rds-inventory
     AUDIT_AWS_IAM_ALERT_LIST:
         description: "Which alerts would you like to check for? Default is all IAM alerts."
-        required: true
+        required: false
         type: array
         default:
             - iam-unusediamgroup
@@ -134,7 +134,7 @@ variables:
             - iam-inventory-policies
     AUDIT_AWS_ELB_ALERT_LIST:
         description: "Which alerts would you like to check for? Default is all ELB alerts."
-        required: true
+        required: false
         type: array
         default:
             - elb-old-ssl-policy
@@ -142,7 +142,7 @@ variables:
             - elb-inventory
     AUDIT_AWS_EC2_ALERT_LIST:
         description: "Which alerts would you like to check for? Default is all EC2 alerts."
-        required: true
+        required: false
         type: array
         default:
             - ec2-inventory-instances
@@ -164,7 +164,7 @@ variables:
             - ec2-not-used-security-groups
     AUDIT_AWS_S3_ALERT_LIST:
         description: "Which alerts would you like to check for? Default is all S3 alerts."
-        required: true
+        required: false
         type: array
         default:
            - s3-allusers-write
