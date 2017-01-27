@@ -412,6 +412,7 @@ end
 coreo_uni_util_jsrunner "jsrunner-process-table-aws" do
   action :run
   provide_composite_access true
+  json_input '{"violations":COMPOSITE::coreo_uni_util_jsrunner.jsrunner-process-suppression-aws.return}'
   packages([
                {
                    :name => "js-yaml",
