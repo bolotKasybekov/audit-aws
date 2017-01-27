@@ -295,7 +295,7 @@ coreo_uni_util_jsrunner "splice-violation-object" do
    "violations": COMPOSITE::coreo_aws_advisor_s3.advise-s3.report }
   }}'
   function <<-EOH
-  const wayToServices = JSON_INPUT['services'];
+  const wayToServices = json_input['services'];
   const auditStackKeys = Object.keys(wayToServices);
   let newViolation = {};
   console.log(JSON_INPUT);
