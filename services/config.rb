@@ -298,7 +298,6 @@ coreo_uni_util_jsrunner "splice-violation-object" do
   const wayToServices = json_input['services'];
   const auditStackKeys = Object.keys(wayToServices);
   let newViolation = {};
-  console.log(JSON_INPUT);
   auditStackKeys.forEach(auditStackKey => {
       let wayForViolation = wayToServices[auditStackKey]['violations'];
       if(wayForViolation.hasOwnProperty('violations')) {
