@@ -444,7 +444,6 @@ coreo_uni_util_jsrunner "tags-to-notifiers-array-aws" do
       "violations": COMPOSITE::coreo_uni_util_jsrunner.jsrunner-process-suppression-aws.return}'
   function <<-EOH
   
-const CloudCoreoJSRunner = require('cloudcoreo-jsrunner-commons');
 const JSON_INPUT = json_input;
 const NO_OWNER_EMAIL = "${AUDIT_AWS_ALERT_RECIPIENT}";
 const OWNER_TAG = "${AUDIT_AWS_OWNER_TAG}";
