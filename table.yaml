@@ -8,17 +8,17 @@ no-global-trails:
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": "__TAGS__"
 cloudtrail-inventory:
-  "Trail Name": "__OBJECT__~https://+__OBJECT__.violations.__RULE__.region+.console.aws.amazon.com/cloudtrail/home?region=+__OBJECT__.violations.__RULE__.region+#/configuration/+__OBJECT__.violations.__RULE__.violating_object.0.object.trail_arn+"
-  "Includes Global Events": "+__OBJECT__.violations.__RULE__.violating_object.0.object.include_global_service_events+"
-  "Multi-region Trail": "+__OBJECT__.violations.__RULE__.violating_object.0.object.is_multi_region_trail+"
+  "Trail Name": "__OBJECT__~https://+__OBJECT__.violations.__RULE__.region+.console.aws.amazon.com/cloudtrail/home?region=+__OBJECT__.violations.__RULE__.region+#/configuration/+__OBJECT__.violations.__RULE__.result_info.0.object.trail_arn+"
+  "Includes Global Events": "+__OBJECT__.violations.__RULE__.result_info.0.object.include_global_service_events+"
+  "Multi-region Trail": "+__OBJECT__.violations.__RULE__.result_info.0.object.is_multi_region_trail+"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": "__TAGS__"
 
 #ec2
 ec2-inventory-instances:
-  "Instance Name": "__OBJECT__~https://console.aws.amazon.com/ec2/v2/home?region=+__OBJECT__.violations.__RULE__.region+#Instances:search=+__OBJECT__.violations.__RULE__.violating_object.0.object.instance_id+;sort=instanceId"
-  "Instance Type": "+__OBJECT__.violations.__RULE__.violating_object.0.object.instance_type+"
-  "VPC": "+__OBJECT__.violations.__RULE__.violating_object.0.object.vpc_id+"
+  "Instance Name": "__OBJECT__~https://console.aws.amazon.com/ec2/v2/home?region=+__OBJECT__.violations.__RULE__.region+#Instances:search=+__OBJECT__.violations.__RULE__.result_info.0.object.instance_id+;sort=instanceId"
+  "Instance Type": "+__OBJECT__.violations.__RULE__.result_info.0.object.instance_type+"
+  "VPC": "+__OBJECT__.violations.__RULE__.result_info.0.object.vpc_id+"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": "__TAGS__"  
 ec2-inventory-security-groups:
@@ -89,8 +89,8 @@ ec2-not-used-security-groups:
 #elb
 elb-inventory:
   "Load Balancer": "__OBJECT__~https://console.aws.amazon.com/ec2/v2/home?region=+__OBJECT__.violations.__RULE__.region+#LoadBalancers:search=__OBJECT__"
-  "VPC": "+__OBJECT__.violations.__RULE__.violating_object.0.object.vpc_id"
-  "Security Group": "+__OBJECT__.violations.__RULE__.violating_object.0.object.source_security_group.group_name"
+  "VPC": "+__OBJECT__.violations.__RULE__.result_info.0.object.vpc_id"
+  "Security Group": "+__OBJECT__.violations.__RULE__.result_info.0.object.source_security_group.group_name"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": "__TAGS__"
 elb-old-ssl-policy:
@@ -105,35 +105,35 @@ elb-current-ssl-policy:
 #iam
 iam-inventory-users:
   "IAM Users": "__OBJECT__~https://console.aws.amazon.com/iam/home?region=+__OBJECT__.violations.__RULE__.region+#/users/+__OBJECT__+"
-  "User ID": "+__OBJECT__.violations.__RULE__.violating_object.0.object.user_id+"
-  "User ARN": "+__OBJECT__.violations.__RULE__.violating_object.0.object.arn+"
-  "User Create Date": "+__OBJECT__.violations.__RULE__.violating_object.0.object.create_date+"
-  "Password Last Used": "+__OBJECT__.violations.__RULE__.violating_object.0.object.password_last_used+"
+  "User ID": "+__OBJECT__.violations.__RULE__.result_info.0.object.user_id+"
+  "User ARN": "+__OBJECT__.violations.__RULE__.result_info.0.object.arn+"
+  "User Create Date": "+__OBJECT__.violations.__RULE__.result_info.0.object.create_date+"
+  "Password Last Used": "+__OBJECT__.violations.__RULE__.result_info.0.object.password_last_used+"
 iam-inventory-roles:
-  "IAM Role": "__OBJECT__~https://console.aws.amazon.com/iam/home?region=+__OBJECT__.violations.__RULE__.region+#/roles/+__OBJECT__.violations.__RULE__.violating_object.0.object.role_name+"
-  "Role Name": "+__OBJECT__.violations.__RULE__.violating_object.0.object.role_name+"
-  "Role ARN": "+__OBJECT__.violations.__RULE__.violating_object.0.object.arn+"
-  "Create Date": "+__OBJECT__.violations.__RULE__.violating_object.0.object.create_date+"
+  "IAM Role": "__OBJECT__~https://console.aws.amazon.com/iam/home?region=+__OBJECT__.violations.__RULE__.region+#/roles/+__OBJECT__.violations.__RULE__.result_info.0.object.role_name+"
+  "Role Name": "+__OBJECT__.violations.__RULE__.result_info.0.object.role_name+"
+  "Role ARN": "+__OBJECT__.violations.__RULE__.result_info.0.object.arn+"
+  "Create Date": "+__OBJECT__.violations.__RULE__.result_info.0.object.create_date+"
 iam-inventory-policies:
-  "IAM Policy": "__OBJECT__~https://console.aws.amazon.com/iam/home?region=+__OBJECT__.violations.__RULE__.region+#/policies/+__OBJECT__.violations.__RULE__.violating_object.0.object.arn+"
-  "Policy Name": "+__OBJECT__.violations.__RULE__.violating_object.0.object.policy_name+"
-  "Policy ARN": "+__OBJECT__.violations.__RULE__.violating_object.0.object.arn+"
-  "Create Date": "+__OBJECT__.violations.__RULE__.violating_object.0.object.create_date+"
+  "IAM Policy": "__OBJECT__~https://console.aws.amazon.com/iam/home?region=+__OBJECT__.violations.__RULE__.region+#/policies/+__OBJECT__.violations.__RULE__.result_info.0.object.arn+"
+  "Policy Name": "+__OBJECT__.violations.__RULE__.result_info.0.object.policy_name+"
+  "Policy ARN": "+__OBJECT__.violations.__RULE__.result_info.0.object.arn+"
+  "Create Date": "+__OBJECT__.violations.__RULE__.result_info.0.object.create_date+"
 iam-inventory-groups:
-  "IAM Group": "__OBJECT__~https://console.aws.amazon.com/iam/home?region=+__OBJECT__.violations.__RULE__.region+#/groups/+__OBJECT__.violations.__RULE__.violating_object.0.object.group_name+"
-  "Group Name": "+__OBJECT__.violations.__RULE__.violating_object.0.object.group_name+"
-  "Group ARN": "+__OBJECT__.violations.__RULE__.violating_object.0.object.arn+"
-  "Create Date": "+__OBJECT__.violations.__RULE__.violating_object.0.object.create_date+"
+  "IAM Group": "__OBJECT__~https://console.aws.amazon.com/iam/home?region=+__OBJECT__.violations.__RULE__.region+#/groups/+__OBJECT__.violations.__RULE__.result_info.0.object.group_name+"
+  "Group Name": "+__OBJECT__.violations.__RULE__.result_info.0.object.group_name+"
+  "Group ARN": "+__OBJECT__.violations.__RULE__.result_info.0.object.arn+"
+  "Create Date": "+__OBJECT__.violations.__RULE__.result_info.0.object.create_date+"
 iam-unusediamgroup:
   "Group Name": "__OBJECT__~https://console.aws.amazon.com/iam/home?region=+__OBJECT__.violations.__RULE__.region+#/groups/+__OBJECT__+"
 iam-inactive-key-no-rotation:
-  "IAM Key": "__OBJECT__~https://console.aws.amazon.com/iam/home?region=+__OBJECT__.violations.__RULE__.region+#/users/+__OBJECT__.violations.__RULE__.violating_object.0.object.user_name+?section=security_credentials"
-  "User Name": "+__OBJECT__.violations.__RULE__.violating_object.0.object.user_name+"
-  "Key Create Date": "+__OBJECT__.violations.__RULE__.violating_object.0.object.create_date+"
+  "IAM Key": "__OBJECT__~https://console.aws.amazon.com/iam/home?region=+__OBJECT__.violations.__RULE__.region+#/users/+__OBJECT__.violations.__RULE__.result_info.0.object.user_name+?section=security_credentials"
+  "User Name": "+__OBJECT__.violations.__RULE__.result_info.0.object.user_name+"
+  "Key Create Date": "+__OBJECT__.violations.__RULE__.result_info.0.object.create_date+"
 iam-active-key-no-rotation:
-  "IAM Key": "__OBJECT__~https://console.aws.amazon.com/iam/home?region=+__OBJECT__.violations.__RULE__.region+#/users/+__OBJECT__.violations.__RULE__.violating_object.0.object.user_name+?section=security_credentials"
-  "User Name": "+__OBJECT__.violations.__RULE__.violating_object.0.object.user_name+"
-  "Key Create Date": "+__OBJECT__.violations.__RULE__.violating_object.0.object.create_date+"
+  "IAM Key": "__OBJECT__~https://console.aws.amazon.com/iam/home?region=+__OBJECT__.violations.__RULE__.region+#/users/+__OBJECT__.violations.__RULE__.result_info.0.object.user_name+?section=security_credentials"
+  "User Name": "+__OBJECT__.violations.__RULE__.result_info.0.object.user_name+"
+  "Key Create Date": "+__OBJECT__.violations.__RULE__.result_info.0.object.create_date+"
 iam-missing-password-policy:
   "Password Policy": "__OBJECT__~https://console.aws.amazon.com/iam/home?region=+__OBJECT__.violations.__RULE__.region+#/account_settings"
 iam-passwordreuseprevention:
@@ -169,7 +169,7 @@ iam-root-access-key-2:
 rds-short-backup-retention-period:
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+#https://+__OBJECT__.violations.__RULE__.region+.console.aws.amazon.com/cloudtrail/home?region=+__OBJECT__.violations.__RULE__.region+"
 #  "AWS Tags": "+__OBJECT__.tags+"
-#  "Trail Name": "__OBJECT__#https://+__OBJECT__.violations.__RULE__.region+.console.aws.amazon.com/cloudtrail/home?region=+__OBJECT__.violations.__RULE__.region+#/configuration/+__OBJECT__.violations.__RULE__.violating_object.0.object.trail_arn+"
+#  "Trail Name": "__OBJECT__#https://+__OBJECT__.violations.__RULE__.region+.console.aws.amazon.com/cloudtrail/home?region=+__OBJECT__.violations.__RULE__.region+#/configuration/+__OBJECT__.violations.__RULE__.result_info.0.object.trail_arn+"
 rds-no-auto-minor-version-upgrade:
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+#https://+__OBJECT__.violations.__RULE__.region+.console.aws.amazon.com/cloudtrail/home?region=+__OBJECT__.violations.__RULE__.region+"
 #  "AWS Tags": "+__OBJECT__.tags+"
