@@ -1,115 +1,27 @@
-
-=begin
-
-coreo_aws_advisor_ec2 "advise-unused-security-groups-ec2"
-coreo_aws_advisor_elb "advise-elb-for-security-group"
-coreo_uni_util_jsrunner "ec2-security-groups"
-coreo_uni_util_variables "ec2-update-advisor-output"
-coreo_uni_util_jsrunner "jsrunner-process-suppression-ec2"
-coreo_uni_util_variables "ec2-for-suppression-update-advisor-output"
-coreo_uni_util_jsrunner "jsrunner-process-table-ec2"
-coreo_uni_util_jsrunner "ec2-tags-to-notifiers-array"
-coreo_uni_util_jsrunner "ec2-tags-rollup"
-coreo_uni_util_notify "advise-ec2-to-tag-values"
-coreo_uni_util_notify "advise-ec2-rollup"
-
-coreo_uni_util_jsrunner "jsrunner-process-suppression-elb"
-coreo_uni_util_variables "elb-for-suppression-update-advisor-output"
-coreo_uni_util_jsrunner "jsrunner-process-table-elb"
-coreo_uni_util_jsrunner "elb-tags-to-notifiers-array"
-coreo_uni_util_jsrunner "elb-tags-rollup"
-coreo_uni_util_notify "advise-elb-to-tag-values"
-coreo_uni_util_notify "advise-elb-rollup"
-
-coreo_uni_util_jsrunner "jsrunner-process-suppression-iam"
-coreo_uni_util_variables "iam-for-suppression-update-advisor-output"
-coreo_uni_util_jsrunner "jsrunner-process-table-iam"
-coreo_uni_util_jsrunner "tags-to-notifiers-array-iam"
-coreo_uni_util_jsrunner "tags-rollup-iam"
-coreo_uni_util_notify "advise-iam-html-report"
-coreo_uni_util_notify "advise-iam-rollup"
-
-
-coreo_uni_util_jsrunner "rds-aggregate"
-coreo_uni_util_jsrunner "jsrunner-process-suppression-rds"
-coreo_uni_util_variables "rds-for-suppression-update-advisor-output"
-coreo_uni_util_jsrunner "jsrunner-process-table-rds"
-coreo_uni_util_jsrunner "tags-to-notifiers-array-rds"
-coreo_uni_util_jsrunner "tags-rollup-rds"
-coreo_uni_util_notify "advise-rds-to-tag-values"
-coreo_uni_util_notify "advise-rds-rollup"
-
-
-coreo_uni_util_jsrunner "jsrunner-process-suppression-redshift"
-coreo_uni_util_variables "redshift-for-suppression-update-advisor-output"
-coreo_uni_util_jsrunner "jsrunner-process-table-redshift"
-coreo_uni_util_jsrunner "tags-to-notifiers-array-redshift"
-coreo_uni_util_jsrunner "tags-rollup-redshift"
-coreo_uni_util_notify "advise-redshift-to-tag-values"
-coreo_uni_util_notify "advise-redshift-rollup"
-
-coreo_uni_util_jsrunner "jsrunner-process-suppression-s3"
-coreo_uni_util_variables "s3-for-suppression-update-advisor-output"
-coreo_uni_util_jsrunner "jsrunner-process-table-s3"
-coreo_uni_util_jsrunner "tags-to-notifiers-array-s3"
-coreo_uni_util_notify "advise-s3-to-tag-values"
-coreo_uni_util_jsrunner "tags-rollup-s3"
-coreo_uni_util_notify "advise-s3-rollup"
-
-=end
-
-
-
-coreo_uni_util_jsrunner "cloudtrail-aggregate" do
-  action :nothing
-end
-
-coreo_uni_util_variables "cloudtrail-update-advisor-output" do
-  action :nothing
-end
-
 coreo_uni_util_jsrunner "jsrunner-process-suppression-cloudtrail" do
   action :nothing
 end
-
 coreo_uni_util_variables "cloudtrail-suppression-update-advisor-output" do
  action :nothing
 end
-
 coreo_uni_util_jsrunner "jsrunner-process-table-cloudtrail" do
   action :nothing
 end
-
 coreo_uni_util_jsrunner "cloudtrail-tags-to-notifiers-array" do
   action :nothing
 end
-
 coreo_uni_util_jsrunner "cloudtrail-tags-rollup" do
   action :nothing
 end
-
 coreo_uni_util_notify "advise-cloudtrail-to-tag-values" do
   action :nothing
 end
-
 coreo_uni_util_notify "advise-cloudtrail-rollup" do
   action :nothing
 end
 
 # cloudtrail and
 
-coreo_aws_advisor_ec2 "advise-unused-security-groups-ec2" do
-  action :nothing
-end
-coreo_aws_advisor_elb "advise-elb-for-security-group" do
-  action :nothing
-end
-coreo_uni_util_jsrunner "ec2-security-groups" do
-  action :nothing
-end
-coreo_uni_util_variables "ec2-update-advisor-output" do
-  action :nothing
-end
 coreo_uni_util_jsrunner "jsrunner-process-suppression-ec2" do
   action :nothing
 end
@@ -156,9 +68,7 @@ coreo_uni_util_notify "advise-elb-rollup" do
   action :nothing
 end
 
-
 # elb end
-
 
 coreo_uni_util_jsrunner "jsrunner-process-suppression-iam" do
   action :nothing
@@ -184,9 +94,6 @@ end
 
 #  iam end
 
-coreo_uni_util_jsrunner "rds-aggregate" do
-  action :nothing
-end
 coreo_uni_util_jsrunner "jsrunner-process-suppression-rds" do
   action :nothing
 end
@@ -232,7 +139,6 @@ end
 coreo_uni_util_notify "advise-redshift-rollup" do
   action :nothing
 end
-
 
 # redshift end
 
