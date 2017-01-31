@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 coreo_uni_util_jsrunner "jsrunner-process-suppression-cloudtrail" do
   action :nothing
 end
@@ -47,6 +48,127 @@ end
 # ec2 end
 
 coreo_uni_util_jsrunner "jsrunner-process-suppression-elb" do
+=======
+
+=begin
+
+coreo_aws_advisor_ec2 "advise-unused-security-groups-ec2"
+coreo_aws_advisor_elb "advise-elb-for-security-group"
+coreo_uni_util_jsrunner "ec2-security-groups"
+coreo_uni_util_variables "ec2-update-advisor-output"
+coreo_uni_util_jsrunner "jsrunner-process-suppression-ec2"
+coreo_uni_util_variables "ec2-for-suppression-update-advisor-output"
+coreo_uni_util_jsrunner "jsrunner-process-table-ec2"
+coreo_uni_util_jsrunner "ec2-tags-to-notifiers-array"
+coreo_uni_util_jsrunner "ec2-tags-rollup"
+coreo_uni_util_notify "advise-ec2-to-tag-values"
+coreo_uni_util_notify "advise-ec2-rollup"
+
+coreo_uni_util_jsrunner "jsrunner-process-suppression-elb"
+coreo_uni_util_variables "elb-for-suppression-update-advisor-output"
+coreo_uni_util_jsrunner "jsrunner-process-table-elb"
+coreo_uni_util_jsrunner "elb-tags-to-notifiers-array"
+coreo_uni_util_jsrunner "elb-tags-rollup"
+coreo_uni_util_notify "advise-elb-to-tag-values"
+coreo_uni_util_notify "advise-elb-rollup"
+
+coreo_uni_util_jsrunner "jsrunner-process-suppression-iam"
+coreo_uni_util_variables "iam-for-suppression-update-advisor-output"
+coreo_uni_util_jsrunner "jsrunner-process-table-iam"
+coreo_uni_util_jsrunner "tags-to-notifiers-array-iam"
+coreo_uni_util_jsrunner "tags-rollup-iam"
+coreo_uni_util_notify "advise-iam-html-report"
+coreo_uni_util_notify "advise-iam-rollup"
+
+
+coreo_uni_util_jsrunner "rds-aggregate"
+coreo_uni_util_jsrunner "jsrunner-process-suppression-rds"
+coreo_uni_util_variables "rds-for-suppression-update-advisor-output"
+coreo_uni_util_jsrunner "jsrunner-process-table-rds"
+coreo_uni_util_jsrunner "tags-to-notifiers-array-rds"
+coreo_uni_util_jsrunner "tags-rollup-rds"
+coreo_uni_util_notify "advise-rds-to-tag-values"
+coreo_uni_util_notify "advise-rds-rollup"
+
+
+coreo_uni_util_jsrunner "jsrunner-process-suppression-redshift"
+coreo_uni_util_variables "redshift-for-suppression-update-advisor-output"
+coreo_uni_util_jsrunner "jsrunner-process-table-redshift"
+coreo_uni_util_jsrunner "tags-to-notifiers-array-redshift"
+coreo_uni_util_jsrunner "tags-rollup-redshift"
+coreo_uni_util_notify "advise-redshift-to-tag-values"
+coreo_uni_util_notify "advise-redshift-rollup"
+
+coreo_uni_util_jsrunner "jsrunner-process-suppression-s3"
+coreo_uni_util_variables "s3-for-suppression-update-advisor-output"
+coreo_uni_util_jsrunner "jsrunner-process-table-s3"
+coreo_uni_util_jsrunner "tags-to-notifiers-array-s3"
+coreo_uni_util_notify "advise-s3-to-tag-values"
+coreo_uni_util_jsrunner "tags-rollup-s3"
+coreo_uni_util_notify "advise-s3-rollup"
+
+=end
+
+
+
+coreo_uni_util_jsrunner "cloudtrail-aggregate" do
+  action :nothing
+end
+
+coreo_uni_util_variables "cloudtrail-update-advisor-output" do
+  action :nothing
+end
+
+coreo_uni_util_jsrunner "jsrunner-process-suppression-cloudtrail" do
+  action :nothing
+end
+
+coreo_uni_util_variables "cloudtrail-suppression-update-advisor-output" do
+ action :nothing
+end
+
+coreo_uni_util_jsrunner "jsrunner-process-table-cloudtrail" do
+  action :nothing
+end
+
+coreo_uni_util_jsrunner "cloudtrail-tags-to-notifiers-array" do
+  action :nothing
+end
+
+coreo_uni_util_jsrunner "cloudtrail-tags-rollup" do
+  action :nothing
+end
+
+coreo_uni_util_notify "advise-cloudtrail-to-tag-values" do
+  action :nothing
+end
+
+coreo_uni_util_notify "advise-cloudtrail-rollup" do
+  action :nothing
+end
+
+# cloudtrail and
+
+coreo_aws_advisor_ec2 "advise-unused-security-groups-ec2" do
+  action :nothing
+end
+coreo_aws_advisor_elb "advise-elb-for-security-group" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "ec2-security-groups" do
+  action :nothing
+end
+coreo_uni_util_variables "ec2-update-advisor-output" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "jsrunner-process-suppression-ec2" do
+  action :nothing
+end
+coreo_uni_util_variables "ec2-for-suppression-update-advisor-output" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "jsrunner-process-table-ec2" do
+>>>>>>> master
   action :nothing
 end
 coreo_uni_util_variables "elb-for-suppression-update-advisor-output" do
@@ -55,10 +177,29 @@ end
 coreo_uni_util_jsrunner "jsrunner-process-table-elb" do
   action :nothing
 end
+<<<<<<< HEAD
 coreo_uni_util_jsrunner "elb-tags-to-notifiers-array" do
   action :nothing
 end
 coreo_uni_util_jsrunner "elb-tags-rollup" do
+=======
+coreo_uni_util_notify "advise-ec2-to-tag-values" do
+  action :nothing
+end
+coreo_uni_util_notify "advise-ec2-rollup" do
+  action :nothing
+end
+
+# ec2 end
+
+coreo_uni_util_jsrunner "jsrunner-process-suppression-elb" do
+  action :nothing
+end
+coreo_uni_util_variables "elb-for-suppression-update-advisor-output" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "jsrunner-process-table-elb" do
+>>>>>>> master
   action :nothing
 end
 coreo_uni_util_notify "advise-elb-to-tag-values" do
@@ -67,6 +208,16 @@ end
 coreo_uni_util_notify "advise-elb-rollup" do
   action :nothing
 end
+coreo_uni_util_notify "advise-elb-to-tag-values" do
+  action :nothing
+end
+coreo_uni_util_notify "advise-elb-rollup" do
+  action :nothing
+end
+
+
+# elb end
+
 
 # elb end
 
@@ -94,6 +245,9 @@ end
 
 #  iam end
 
+coreo_uni_util_jsrunner "rds-aggregate" do
+  action :nothing
+end
 coreo_uni_util_jsrunner "jsrunner-process-suppression-rds" do
   action :nothing
 end
@@ -140,6 +294,10 @@ coreo_uni_util_notify "advise-redshift-rollup" do
   action :nothing
 end
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 # redshift end
 
 coreo_uni_util_jsrunner "jsrunner-process-suppression-s3" do
@@ -202,11 +360,21 @@ coreo_uni_util_jsrunner "splice-violation-object" do
   }}'
   function <<-EOH
   const wayToServices = json_input['services'];
+<<<<<<< HEAD
   let newViolation = {};
 
   const auditStackKeys = Object.keys(wayToServices);
   auditStackKeys.forEach(auditStackKey => {
       let wayForViolation = wayToServices[auditStackKey]['violations'];
+=======
+  const auditStackKeys = Object.keys(wayToServices);
+  let newViolation = {};
+  auditStackKeys.forEach(auditStackKey => {
+      let wayForViolation = wayToServices[auditStackKey]['violations'];
+      if(wayForViolation.hasOwnProperty('violations')) {
+          wayForViolation = wayForViolation['violations'];
+      }
+>>>>>>> master
       const violationKeys = Object.keys(wayForViolation);
       violationKeys.forEach(violation => {
           if(!newViolation.hasOwnProperty(violation)) {
@@ -229,14 +397,20 @@ coreo_uni_util_jsrunner "jsrunner-process-suppression-aws" do
                    :version => "3.7.0"
                }       ])
   function <<-EOH
+<<<<<<< HEAD
   const fs = require('fs');
   const yaml = require('js-yaml');
+=======
+  var fs = require('fs');
+  var yaml = require('js-yaml');
+>>>>>>> master
   let suppression;
   try {
       suppression = yaml.safeLoad(fs.readFileSync('./suppression.yaml', 'utf8'));
   } catch (e) {
   }
   coreoExport('suppression', JSON.stringify(suppression));
+<<<<<<< HEAD
   const violations = json_input.violations;
   const result = {};
   let file_date = null;
@@ -304,10 +478,77 @@ coreo_uni_util_jsrunner "jsrunner-process-suppression-aws" do
           });
       });
   });
+=======
+  var violations = json_input.violations;
+  var result = {};
+    var file_date = null;
+    for (var violator_id in violations) {
+        result[violator_id] = {};
+        result[violator_id].tags = violations[violator_id].tags;
+        result[violator_id].violations = {}
+        for (var rule_id in violations[violator_id].violations) {
+            is_violation = true;
+ 
+            result[violator_id].violations[rule_id] = violations[violator_id].violations[rule_id];
+            for (var suppress_rule_id in suppression) {
+                for (var suppress_violator_num in suppression[suppress_rule_id]) {
+                    for (var suppress_violator_id in suppression[suppress_rule_id][suppress_violator_num]) {
+                        file_date = null;
+                        var suppress_obj_id_time = suppression[suppress_rule_id][suppress_violator_num][suppress_violator_id];
+                        if (rule_id === suppress_rule_id) {
+ 
+                            if (violator_id === suppress_violator_id) {
+                                var now_date = new Date();
+ 
+                                if (suppress_obj_id_time === "") {
+                                    suppress_obj_id_time = new Date();
+                                } else {
+                                    file_date = suppress_obj_id_time;
+                                    suppress_obj_id_time = file_date;
+                                }
+                                var rule_date = new Date(suppress_obj_id_time);
+                                if (isNaN(rule_date.getTime())) {
+                                    rule_date = new Date(0);
+                                }
+ 
+                                if (now_date <= rule_date) {
+ 
+                                    is_violation = false;
+ 
+                                    result[violator_id].violations[rule_id]["suppressed"] = true;
+                                    if (file_date != null) {
+                                        result[violator_id].violations[rule_id]["suppressed_until"] = file_date;
+                                        result[violator_id].violations[rule_id]["suppression_expired"] = false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+ 
+                }
+            }
+            if (is_violation) {
+ 
+                if (file_date !== null) {
+                    result[violator_id].violations[rule_id]["suppressed_until"] = file_date;
+                    result[violator_id].violations[rule_id]["suppression_expired"] = true;
+                } else {
+                    result[violator_id].violations[rule_id]["suppression_expired"] = false;
+                }
+                result[violator_id].violations[rule_id]["suppressed"] = false;
+            }
+        }
+    }
+ 
+    var rtn = result;
+  
+  var rtn = result;
+>>>>>>> master
   
   callback(result);
   EOH
 end
+<<<<<<< HEAD
 
 coreo_uni_util_variables "aws-for-suppression-update-advisor-output" do
   action :set
@@ -316,6 +557,16 @@ coreo_uni_util_variables "aws-for-suppression-update-advisor-output" do
             ])
 end
 
+=======
+
+coreo_uni_util_variables "aws-for-suppression-update-advisor-output" do
+  action :set
+  variables([
+                {'COMPOSITE::coreo_uni_util_jsrunner.splice-violation-object.return' => 'COMPOSITE::coreo_uni_util_jsrunner.jsrunner-process-suppression-aws.return'}
+            ])
+end
+
+>>>>>>> master
 coreo_uni_util_jsrunner "jsrunner-process-table-aws" do
   action :run
   provide_composite_access true
@@ -343,7 +594,11 @@ coreo_uni_util_jsrunner "tags-to-notifiers-array-aws" do
   packages([
                {
                    :name => "cloudcoreo-jsrunner-commons",
+<<<<<<< HEAD
                    :version => "1.7.0"
+=======
+                   :version => "1.6.9"
+>>>>>>> master
                }       ])
   json_input '{ "composite name":"PLAN::stack_name",
       "plan name":"PLAN::name",
