@@ -207,10 +207,20 @@ coreo_uni_util_jsrunner "splice-violation-object" do
   auditStackKeys.forEach(auditStackKey => {
       let wayForViolation = wayToServices[auditStackKey]['violations'];
       const violationKeys = Object.keys(wayForViolation);
-      violationKeys.forEach(violation => {
-          if(!newViolation.hasOwnProperty(violation)) {
-              newViolation[violation] = wayForViolation[violation];
+      violationKeys.forEach(violationRegion => {
+          if(!newViolation.hasOwnProperty(violationRegion)) {
+              newViolation[violationRegion] = {};
           }
+          const ruleKeys = Object.keys(wayForViolation[violationRegion]);
+          ruleKeys.forEach(ruleKey => {
+              if(!newViolation[violationRegion].hasOwnProperty(ruleKey)) {
+                  newViolation[violationRegion][ruleKey] = {};
+              }
+              const objectKeys = Object.keys(newViolation[violationRegion][ruleKey]);
+              objectKeys.forEach(objectKey => {
+                  newViolation[violationRegion][ruleKey][objectKey] = wayForViolation[violationRegion][ruleKey][objectKey];
+              })
+          })
       });
   
   });
