@@ -327,8 +327,9 @@ coreo_uni_util_jsrunner "jsrunner-process-table-aws" do
   function <<-EOH
     var fs = require('fs');
     var yaml = require('js-yaml');
+    var table;
     try {
-        var table = yaml.safeLoad(fs.readFileSync('./table.yaml', 'utf8'));
+        table = yaml.safeLoad(fs.readFileSync('./table.yaml', 'utf8'));
     } catch (e) {
     }
     coreoExport('table', JSON.stringify(table));
