@@ -1,27 +1,21 @@
 coreo_uni_util_jsrunner "jsrunner-process-suppression-cloudtrail" do
   action :nothing
 end
-
 coreo_uni_util_variables "cloudtrail-suppression-update-advisor-output" do
   action :nothing
 end
-
 coreo_uni_util_jsrunner "jsrunner-process-table-cloudtrail" do
   action :nothing
 end
-
 coreo_uni_util_jsrunner "cloudtrail-tags-to-notifiers-array" do
   action :nothing
 end
-
 coreo_uni_util_jsrunner "cloudtrail-tags-rollup" do
   action :nothing
 end
-
 coreo_uni_util_notify "advise-cloudtrail-to-tag-values" do
   action :nothing
 end
-
 coreo_uni_util_notify "advise-cloudtrail-rollup" do
   action :nothing
 end
@@ -74,9 +68,7 @@ coreo_uni_util_notify "advise-elb-rollup" do
   action :nothing
 end
 
-
 # elb end
-
 
 coreo_uni_util_jsrunner "jsrunner-process-suppression-iam" do
   action :nothing
@@ -102,9 +94,6 @@ end
 
 #  iam end
 
-coreo_uni_util_jsrunner "rds-aggregate" do
-  action :nothing
-end
 coreo_uni_util_jsrunner "jsrunner-process-suppression-rds" do
   action :nothing
 end
@@ -150,7 +139,6 @@ end
 coreo_uni_util_notify "advise-redshift-rollup" do
   action :nothing
 end
-
 
 # redshift end
 
