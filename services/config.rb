@@ -212,17 +212,18 @@ coreo_uni_util_jsrunner "splice-violation-object" do
               newViolation[violationRegion] = {};
           }
           const ruleKeys = Object.keys(wayForViolation[violationRegion]);
-          ruleKeys.forEach(ruleKey => {
-              if(!newViolation[violationRegion].hasOwnProperty(ruleKey)) {
-                  newViolation[violationRegion][ruleKey] = {};
+          ruleKeys.forEach(objectKey => {
+              if(!newViolation[violationRegion].hasOwnProperty(objectKey)) {
+                  newViolation[violationRegion][objectKey] = {};
+                  newViolation[violationRegion][objectKey]['violations'] = {};
               }
-              const objectKeys = Object.keys(newViolation[violationRegion][ruleKey]);
-              objectKeys.forEach(objectKey => {
-                  newViolation[violationRegion][ruleKey][objectKey] = wayForViolation[violationRegion][ruleKey][objectKey];
+              const objectKeys = Object.keys(wayForViolation[violationRegion][objectKey]['violations']);
+              objectKeys.forEach(ruleKey => {
+                  newViolation[violationRegion][objectKey]['tags'] = wayForViolation[violationRegion][objectKey]['tags'];
+                  newViolation[violationRegion][objectKey]['violations'][ruleKey] = wayForViolation[violationRegion][objectKey]['violations'][ruleKey];
               })
           })
       });
-  
   });
   callback(newViolation);
   EOH
