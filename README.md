@@ -74,6 +74,18 @@ This repo is designed to work with CloudCoreo. It will monitor all supported AWS
   * description: Which alerts would you like to check for? Default is all S3 alerts.
   * default: s3-allusers-write, s3-allusers-write-acp, s3-allusers-read, s3-authenticatedusers-write, s3-authenticatedusers-write-acp, s3-authenticatedusers-read, s3-logging-disabled, s3-world-open-policy-delete, s3-world-open-policy-get, s3-world-open-policy-list, s3-world-open-policy-put, s3-world-open-policy-all, s3-only-ip-based-policy
 
+### `AUDIT_AWS_CLOUDWATCH_ALERT_LIST`:
+  * description: Which alerts would you like to check for? Default is all Cloudwatch alerts.
+  * default: cloudwatch-rule-1
+
+### `AUDIT_AWS_KMS_ALERT_LIST`:
+  * description: Which alerts would you like to check for? Default is all KMS alerts.
+  * default: kms-rule-1
+
+### `AUDIT_AWS_SNS_ALERT_LIST`:
+  * description: Which alerts would you like to check for? Default is all SNS alerts.
+  * default: sns-rule-1
+
 
 ## Optional variables with no default
 
