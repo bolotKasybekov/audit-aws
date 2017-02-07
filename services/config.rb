@@ -180,25 +180,25 @@ coreo_uni_util_jsrunner "splice-violation-object" do
    "composite name":"PLAN::stack_name",
    "plan name":"PLAN::name",
    "audit name": "CloudTrail",
-   "violations": COMPOSITE::coreo_aws_advisor_cloudtrail.advise-cloudtrail.report },
+   "violations": COMPOSITE::coreo_aws_rule_runner_cloudtrail.advise-cloudtrail.report },
   "ec2": {
    "audit name": "EC2",
-   "violations": COMPOSITE::coreo_aws_advisor_ec2.advise-ec2.report },
+   "violations": COMPOSITE::coreo_aws_rule_runner_ec2.advise-ec2.report },
   "iam": {
    "audit name": "IAM",
-   "violations": COMPOSITE::coreo_aws_advisor_iam.advise-iam.report },
+   "violations": COMPOSITE::coreo_aws_rule_runner_iam.advise-iam.report },
   "elb": {
    "audit name": "ELB",
-   "violations": COMPOSITE::coreo_aws_advisor_elb.advise-elb.report },
+   "violations": COMPOSITE::coreo_aws_rule_runner_elb.advise-elb.report },
   "rds": {
    "audit name": "RDS",
-   "violations": COMPOSITE::coreo_aws_advisor_rds.advise-rds.report },
+   "violations": COMPOSITE::coreo_aws_rule_runner_rds.advise-rds.report },
   "redshift": {
    "audit name": "REDSHIFT",
-   "violations": COMPOSITE::coreo_aws_advisor_redshift.advise-redshift.report },
+   "violations": COMPOSITE::coreo_aws_rule_runner_redshift.advise-redshift.report },
   "s3": {
    "audit name": "S3",
-   "violations": COMPOSITE::coreo_aws_advisor_s3.advise-s3.report }
+   "violations": COMPOSITE::coreo_aws_rule_runner_s3.advise-s3.report }
   }}'
   function <<-EOH
   const wayToServices = json_input['services'];
@@ -418,6 +418,6 @@ COMPOSITE::coreo_uni_util_jsrunner.tags-rollup-aws.return
   '
   payload_type 'text'
   endpoint ({
-      :to => '${AUDIT_AWS_ALERT_RECIPIENT}', :subject => 'CloudCoreo aws advisor alerts on PLAN::stack_name :: PLAN::name'
+      :to => '${AUDIT_AWS_ALERT_RECIPIENT}', :subject => 'CloudCoreo aws rule results on PLAN::stack_name :: PLAN::name'
   })
 end

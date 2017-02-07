@@ -19,3 +19,12 @@
 [submodule "stack-audit-aws-cloudtrail/extends"]
 	path = stack-audit-aws-cloudtrail/extends
 	url = git@github.com:CloudCoreo/audit-aws-cloudtrail.git
+[submodule "stack-audit-aws-cloudwatch/extends"]
+	path = stack-audit-aws-cloudwatch/extends
+	url = git@github.com:CloudCoreo/audit-aws-cloudwatch.git
+[submodule "stack-audit-aws-kms/extends"]
+	path = stack-audit-aws-kms/extends
+	url = git@github.com:CloudCoreo/audit-aws-kms.git
+[submodule "stack-audit-aws-sns/extends"]
+	path = stack-audit-aws-sns/extends
+	url = git@github.com:CloudCoreo/audit-aws-sns.git

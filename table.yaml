@@ -264,14 +264,17 @@ s3-only-ip-based-policy:
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": "__TAGS__"
 
-#ec2-aws-linux-check
-ec2-aws-linux-latest-not:
-  "AWS Object ID": "__OBJECT__~https://console.aws.amazon.com/ec2/v2/home?region=+__OBJECT__.violations.__RULE__.region+#Instances:search=__OBJECT__;sort=desc:tag:Name"
+#cloudwatch
+cloudwatch-rule-1:
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": "__TAGS__"
 
-#ec2-atk
-ec2-get-all-instances-older-than:
-  "AWS Object ID": "__OBJECT__~https://console.aws.amazon.com/ec2/v2/home?region=+__OBJECT__.violations.__RULE__.region+#Instances:search=__OBJECT__;sort=desc:tag:Name"
+#kms
+kms-rule-1:
+  "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
+  "AWS Tags": "__TAGS__"
+
+#sns
+sns-rule-1:
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": "__TAGS__"
