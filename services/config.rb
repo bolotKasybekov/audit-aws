@@ -247,73 +247,103 @@ coreo_uni_util_jsrunner "jsrunner-process-suppression-aws" do
   } catch (e) {
   }
   coreoExport('suppression', JSON.stringify(suppression));
-  const violations = json_input.violations;
-  const result = {};
-  let file_date = null;
-  const regionKeys = Object.keys(violations);
-  regionKeys.forEach(region => {
-      result[region] = {};
-      const violationKeys = Object.keys(violations[region]);
-      violationKeys.forEach(violator_id => {
-          result[region][violator_id] = {};
-          result[region][violator_id].tags = violations[region][violator_id].tags;
-          result[region][violator_id].violations = {};
-          const ruleKeys = Object.keys(violations[region][violator_id].violations);
-          ruleKeys.forEach(rule_id => {
-              let is_violation = true;
-              result[region][violator_id].violations[rule_id] = violations[region][violator_id].violations[rule_id];
-              const suppressionRuleKeys = Object.keys(suppression);
-              suppressionRuleKeys.forEach(suppress_rule_id => {
-                  const suppressionViolatorNum = Object.keys(suppression[suppress_rule_id]);
-                  suppressionViolatorNum.forEach(suppress_violator_num => {
-                      const suppressViolatorIdKeys = Object.keys(suppression[suppress_rule_id][suppress_violator_num]);
-                      suppressViolatorIdKeys.forEach(suppress_violator_id => {
-                          file_date = null;
-                          let suppress_obj_id_time = suppression[suppress_rule_id][suppress_violator_num][suppress_violator_id];
-                          if (rule_id === suppress_rule_id) {
-  
-                              if (violator_id === suppress_violator_id) {
-                                  const now_date = new Date();
-  
-                                  if (suppress_obj_id_time === "") {
-                                      suppress_obj_id_time = new Date();
-                                  } else {
-                                      file_date = suppress_obj_id_time;
-                                      suppress_obj_id_time = file_date;
-                                  }
-                                  let rule_date = new Date(suppress_obj_id_time);
-                                  if (isNaN(rule_date.getTime())) {
-                                      rule_date = new Date(0);
-                                  }
-  
-                                  if (now_date <= rule_date) {
-  
-                                      is_violation = false;
-  
-                                      result[region][violator_id].violations[rule_id]["suppressed"] = true;
-                                      if (file_date != null) {
-                                          result[region][violator_id].violations[rule_id]["suppressed_until"] = file_date;
-                                          result[region][violator_id].violations[rule_id]["suppression_expired"] = false;
-                                      }
-                                  }
-                              }
-                          }
-                      });
-                  });
-              });
-              if (is_violation) {
-  
-                  if (file_date !== null) {
-                      result[region][violator_id].violations[rule_id]["suppressed_until"] = file_date;
-                      result[region][violator_id].violations[rule_id]["suppression_expired"] = true;
-                  } else {
-                      result[region][violator_id].violations[rule_id]["suppression_expired"] = false;
-                  }
-                  result[region][violator_id].violations[rule_id]["suppressed"] = false;
-              }
+  function createViolationWithSuppression(result) {
+      const regionKeys = Object.keys(violations);
+      regionKeys.forEach(regionKey => {
+          result[regionKey] = {};
+          const objectIdKeys = Object.keys(violations[regionKey]);
+          objectIdKeys.forEach(objectIdKey => {
+              createObjectId(regionKey, objectIdKey);
           });
       });
-  });
+  }
+  
+  function createObjectId(regionKey, objectIdKey) {
+      const wayToResultObjectId = result[regionKey][objectIdKey] = {};
+      const wayToViolationObjectId = violations[regionKey][objectIdKey];
+      wayToResultObjectId.tags = wayToViolationObjectId.tags;
+      wayToResultObjectId.violations = {};
+      createSuppression(wayToViolationObjectId, regionKey, objectIdKey);
+  }
+  
+  
+  function createSuppression(wayToViolationObjectId, regionKey, violationObjectIdKey) {
+      const ruleKeys = Object.keys(wayToViolationObjectId['violations']);
+      ruleKeys.forEach(violationRuleKey => {
+          result[regionKey][violationObjectIdKey].violations[violationRuleKey] = wayToViolationObjectId['violations'][violationRuleKey];
+          Object.keys(suppression).forEach(suppressRuleKey => {
+              suppression[suppressRuleKey].forEach(suppressionObject => {
+                  Object.keys(suppressionObject).forEach(suppressObjectIdKey => {
+                      setDateForSuppression(
+                          suppressionObject, suppressObjectIdKey,
+                          violationRuleKey, suppressRuleKey,
+                          violationObjectIdKey, regionKey
+                      );
+                  });
+              });
+          });
+      });
+  }
+  
+  
+  function setDateForSuppression(
+      suppressionObject, suppressObjectIdKey,
+      violationRuleKey, suppressRuleKey,
+      violationObjectIdKey, regionKey
+  ) {
+      file_date = null;
+      let suppressDate = suppressionObject[suppressObjectIdKey];
+      const areViolationsEqual = violationRuleKey === suppressRuleKey && violationObjectIdKey === suppressObjectIdKey;
+      if (areViolationsEqual) {
+          const nowDate = new Date();
+          const correctDateSuppress = getCorrectSuppressDate(suppressDate);
+          const isSuppressionDate = nowDate <= correctDateSuppress;
+          if (isSuppressionDate) {
+              setSuppressionProp(regionKey, violationObjectIdKey, violationRuleKey, file_date);
+          } else {
+              setSuppressionExpired(regionKey, violationObjectIdKey, violationRuleKey, file_date);
+          }
+      }
+  }
+  
+  
+  function getCorrectSuppressDate(suppressDate) {
+      const hasSuppressionDate = suppressDate !== '';
+      if (hasSuppressionDate) {
+          file_date = suppressDate;
+      } else {
+          suppressDate = new Date();
+      }
+      let correctDateSuppress = new Date(suppressDate);
+      if (isNaN(correctDateSuppress.getTime())) {
+          correctDateSuppress = new Date(0);
+      }
+      return correctDateSuppress;
+  }
+  
+  
+  function setSuppressionProp(regionKey, objectIdKey, violationRuleKey, file_date) {
+      const wayToViolationObject = result[regionKey][objectIdKey].violations[violationRuleKey];
+      wayToViolationObject["suppressed"] = true;
+      if (file_date != null) {
+          wayToViolationObject["suppression_until"] = file_date;
+          wayToViolationObject["suppression_expired"] = false;
+      }
+  }
+  
+  function setSuppressionExpired(regionKey, objectIdKey, violationRuleKey, file_date) {
+      if (file_date !== null) {
+          result[regionKey][objectIdKey].violations[violationRuleKey]["suppression_until"] = file_date;
+          result[regionKey][objectIdKey].violations[violationRuleKey]["suppression_expired"] = true;
+      } else {
+          result[regionKey][objectIdKey].violations[violationRuleKey]["suppression_expired"] = false;
+      }
+      result[regionKey][objectIdKey].violations[violationRuleKey]["suppressed"] = false;
+  }
+  
+  const violations = json_input['violations'];
+  const result = {};
+  createViolationWithSuppression(result, json_input);
   
   callback(result);
   EOH
@@ -348,16 +378,65 @@ coreo_uni_util_jsrunner "jsrunner-process-table-aws" do
   EOH
 end
 
+coreo_uni_util_jsrunner "jsrunner-process-alert-list-aws" do
+  action :run
+  provide_composite_access true
+  json_input '{"composite name":"PLAN::stack_name"}'
+  packages([
+               {
+                   :name => "js-yaml",
+                   :version => "3.7.0"
+               }       ])
+  function <<-EOH
+    let cloudtrailAlertListToJSON = "${AUDIT_AWS_CLOUDTRAIL_ALERT_LIST}";
+    let redshiftAlertListToJSON = "${AUDIT_AWS_REDSHIFT_ALERT_LIST}";
+    let rdsAlertListToJSON = "${AUDIT_AWS_RDS_ALERT_LIST}";
+    let iamAlertListToJSON = "${AUDIT_AWS_IAM_ALERT_LIST}";
+    let elbAlertListToJSON = "${AUDIT_AWS_ELB_ALERT_LIST}";
+    let ec2AlertListToJSON = "${AUDIT_AWS_EC2_ALERT_LIST}";
+    let s3AlertListToJSON = "${AUDIT_AWS_S3_ALERT_LIST}";
+    let cloudwatchAlertListToJSON = "${AUDIT_AWS_CLOUDWATCH_ALERT_LIST}";
+    let kmsAlertListToJSON = "${AUDIT_AWS_KMS_ALERT_LIST}";
+    let snsAlertListToJSON = "${AUDIT_AWS_SNS_ALERT_LIST}";
+
+
+    const alertListMap = new Set();
+    
+    alertListMap.add(JSON.parse(cloudtrailAlertListToJSON.replace(/'/g, '"')));
+    alertListMap.add(JSON.parse(redshiftAlertListToJSON.replace(/'/g, '"')));
+    alertListMap.add(JSON.parse(rdsAlertListToJSON.replace(/'/g, '"')));
+    alertListMap.add(JSON.parse(iamAlertListToJSON.replace(/'/g, '"')));
+    alertListMap.add(JSON.parse(elbAlertListToJSON.replace(/'/g, '"')));
+    alertListMap.add(JSON.parse(ec2AlertListToJSON.replace(/'/g, '"')));
+    alertListMap.add(JSON.parse(s3AlertListToJSON.replace(/'/g, '"')));
+    alertListMap.add(JSON.parse(cloudwatchAlertListToJSON.replace(/'/g, '"')));
+    alertListMap.add(JSON.parse(kmsAlertListToJSON.replace(/'/g, '"')));
+    alertListMap.add(JSON.parse(snsAlertListToJSON.replace(/'/g, '"')));
+    
+    
+    let auditAwsAlertList = [];
+    
+    alertListMap.forEach(alertList => {
+        console.log(alertList);
+        auditAwsAlertList = auditAwsAlertList.concat(alertList);
+    });
+    
+    auditAwsAlertList = JSON.stringify(auditAwsAlertList);
+    callback(auditAwsAlertList);
+  EOH
+end
+
 coreo_uni_util_jsrunner "tags-to-notifiers-array-aws" do
   action :run
   data_type "json"
   packages([
                {
                    :name => "cloudcoreo-jsrunner-commons",
-                   :version => "1.7.3"
+                   :version => "1.7.8"
                }       ])
   json_input '{ "composite name":"PLAN::stack_name",
       "plan name":"PLAN::name",
+                "alert list": COMPOSITE::coreo_uni_util_jsrunner.jsrunner-process-alert-list-aws.return,
       "table": COMPOSITE::coreo_uni_util_jsrunner.jsrunner-process-table-aws.return,
       "violations": COMPOSITE::coreo_uni_util_jsrunner.jsrunner-process-suppression-aws.return}'
   function <<-EOH
