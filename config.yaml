@@ -27,7 +27,7 @@ variables:
           - AUDIT_AWS_CLOUDWATCH_HTML_REPORT
           - AUDIT_AWS_KMS_HTML_REPORT
           - AUDIT_AWS_SNS_HTML_REPORT
-      description: "Would you like to send the AWS owner tag report(s)? Options - notify / nothing. Default is nothing."
+      description: "Would you like to send a full service report? This is an email that details any violations found and includes a list of the violating cloud objects. Options - notify / nothing. Default is notify."
       required: true
       type: string
       default: "nothing"
@@ -43,7 +43,7 @@ variables:
         - AUDIT_AWS_CLOUDWATCH_ROLLUP_REPORT
         - AUDIT_AWS_KMS_ROLLUP_REPORT
         - AUDIT_AWS_SNS_ROLLUP_REPORT
-      description: "Would you like to send a Summary AWS report? Options - notify / nothing. Default is nothing."
+      description: "Would you like to send a rollup report? This is a short email that summarizes the number of checks performed and the number of violations found. Options - notify / nothing. Default is nothing."
       required: true
       type: string
       default: "nothing"
