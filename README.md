@@ -20,11 +20,11 @@ This repo is designed to work with CloudCoreo. It will monitor all supported AWS
 ## Required variables with default
 
 ### `AUDIT_AWS_HTML_REPORT`:
-  * description: Would you like to send the AWS owner tag report(s)? Options - notify / nothing. Default is nothing.
+  * description: Would you like to send a full service report? This is an email that details any violations found and includes a list of the violating cloud objects. Options - notify / nothing. Default is notify.
   * default: nothing
 
 ### `AUDIT_AWS_ROLLUP_REPORT`:
-  * description: Would you like to send a Summary AWS report? Options - notify / nothing. Default is nothing.
+  * description: Would you like to send a rollup report? This is a short email that summarizes the number of checks performed and the number of violations found. Options - notify / nothing. Default is nothing.
   * default: nothing
 
 ### `AUDIT_AWS_ALLOW_EMPTY`:
