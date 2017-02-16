@@ -1,4 +1,15 @@
 
+coreo_uni_util_variables "planwide" do
+  action :set
+  variables([
+                {'COMPOSITE::coreo_uni_util_variables.planwide.composite_name' => 'PLAN::stack_name'},
+                {'COMPOSITE::coreo_uni_util_variables.planwide.plan_name' => 'PLAN::name'},
+                {'COMPOSITE::coreo_uni_util_variables.planwide.results' => 'unset'},
+                {'COMPOSITE::coreo_uni_util_variables.planwide.number_violations' => 'unset'}
+            ])
+end
+
+
 coreo_uni_util_jsrunner "cloudtrail-tags-rollup" do
   action :nothing
 end
@@ -78,6 +89,7 @@ end
 
 # s3 end
 
+
 coreo_uni_util_jsrunner "splice-violation-object" do
   action :run
   data_type "json"
@@ -110,6 +122,7 @@ coreo_uni_util_jsrunner "splice-violation-object" do
   function <<-EOH
   const wayToServices = json_input['services'];
   let newViolation = {};
+  let violationCounter = 0;
   const auditStackKeys = Object.keys(wayToServices);
   auditStackKeys.forEach(auditStackKey => {
       let wayForViolation = wayToServices[auditStackKey]['violations'];
@@ -119,6 +132,7 @@ coreo_uni_util_jsrunner "splice-violation-object" do
               newViolation[violationRegion] = {};
           }
           const ruleKeys = Object.keys(wayForViolation[violationRegion]);
+          violationCounter+= ruleKeys.length;
           ruleKeys.forEach(objectKey => {
               if(!newViolation[violationRegion].hasOwnProperty(objectKey)) {
                   newViolation[violationRegion][objectKey] = {};
@@ -132,8 +146,18 @@ coreo_uni_util_jsrunner "splice-violation-object" do
           })
       });
   });
+  coreoExport('violationCounter', JSON.stringify(violationCounter));
   callback(newViolation);
   EOH
+end
+
+coreo_uni_util_variables "update-planwide-1" do
+  action :set
+  variables([
+                {'COMPOSITE::coreo_uni_util_variables.planwide.results' => 'COMPOSITE::coreo_aws_rule_runner.splice-violation-object.report'},
+                {'COMPOSITE::coreo_uni_util_variables.planwide.number_violations' => 'COMPOSITE::coreo_aws_rule_runner.splice-violation-object.violationCounter'},
+
+            ])
 end
 
 
@@ -246,6 +270,15 @@ coreoExport('JSONReport', JSON.stringify(JSONReportAfterGeneratingSuppression));
 const notifiers = AuditAWS.getNotifiers();
 callback(notifiers);
   EOH
+end
+
+
+coreo_uni_util_variables "update-planwide-2" do
+  action :set
+  variables([
+                {'COMPOSITE::coreo_uni_util_variables.planwide.results' => 'COMPOSITE::coreo_uni_util_jsrunner.tags-to-notifiers-array-aws.JSONReport'},
+                {'COMPOSITE::coreo_uni_util_variables.planwide.table' => 'COMPOSITE::coreo_uni_util_jsrunner.tags-to-notifiers-array-aws.table'}
+            ])
 end
 
 coreo_uni_util_jsrunner "tags-rollup-aws" do
