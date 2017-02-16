@@ -1,14 +1,13 @@
 
-# coreo_uni_util_variables "planwide" do
-#   action :set
-#   variables([
-#                 {'COMPOSITE::coreo_uni_util_variables.planwide.composite_name' => 'PLAN::stack_name'},
-#                 {'COMPOSITE::coreo_uni_util_variables.planwide.plan_name' => 'PLAN::name'},
-#                 {'COMPOSITE::coreo_uni_util_variables.planwide.results' => 'unset'},
-#                 {'COMPOSITE::coreo_uni_util_variables.planwide.number_violations' => 'unset'}
-#             ])
-# end
-
+coreo_uni_util_variables "aws-planwide" do
+  action :set
+  variables([
+                {'COMPOSITE::coreo_uni_util_variables.aws-planwide.composite_name' => 'PLAN::stack_name'},
+                {'COMPOSITE::coreo_uni_util_variables.aws-planwide.plan_name' => 'PLAN::name'},
+                {'COMPOSITE::coreo_uni_util_variables.aws-planwide.results' => 'unset'},
+                {'COMPOSITE::coreo_uni_util_variables.aws-planwide.number_violations' => 'unset'}
+            ])
+end
 
 coreo_uni_util_jsrunner "cloudtrail-tags-rollup" do
   action :nothing
@@ -151,11 +150,11 @@ coreo_uni_util_jsrunner "splice-violation-object" do
   EOH
 end
 
-coreo_uni_util_variables "update-planwide-1" do
+coreo_uni_util_variables "aws-update-planwide-1" do
   action :set
   variables([
-                {'COMPOSITE::coreo_uni_util_variables.planwide.results' => 'COMPOSITE::coreo_aws_rule_runner.splice-violation-object.report'},
-                {'COMPOSITE::coreo_uni_util_variables.planwide.number_violations' => 'COMPOSITE::coreo_aws_rule_runner.splice-violation-object.violationCounter'},
+                {'COMPOSITE::coreo_uni_util_variables.aws-planwide.results' => 'COMPOSITE::coreo_aws_rule_runner.splice-violation-object.report'},
+                {'COMPOSITE::coreo_uni_util_variables.aws-planwide.number_violations' => 'COMPOSITE::coreo_aws_rule_runner.splice-violation-object.violationCounter'},
 
             ])
 end
@@ -273,11 +272,11 @@ callback(notifiers);
 end
 
 
-coreo_uni_util_variables "update-planwide-2" do
+coreo_uni_util_variables "aws-update-planwide-2" do
   action :set
   variables([
-                {'COMPOSITE::coreo_uni_util_variables.planwide.results' => 'COMPOSITE::coreo_uni_util_jsrunner.tags-to-notifiers-array-aws.JSONReport'},
-                {'COMPOSITE::coreo_uni_util_variables.planwide.table' => 'COMPOSITE::coreo_uni_util_jsrunner.tags-to-notifiers-array-aws.table'}
+                {'COMPOSITE::coreo_uni_util_variables.aws-planwide.results' => 'COMPOSITE::coreo_uni_util_jsrunner.tags-to-notifiers-array-aws.JSONReport'},
+                {'COMPOSITE::coreo_uni_util_variables.aws-planwide.table' => 'COMPOSITE::coreo_uni_util_jsrunner.tags-to-notifiers-array-aws.table'}
             ])
 end
 
