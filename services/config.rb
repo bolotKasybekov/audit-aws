@@ -1,13 +1,13 @@
 
-coreo_uni_util_variables "planwide" do
-  action :set
-  variables([
-                {'COMPOSITE::coreo_uni_util_variables.planwide.composite_name' => 'PLAN::stack_name'},
-                {'COMPOSITE::coreo_uni_util_variables.planwide.plan_name' => 'PLAN::name'},
-                {'COMPOSITE::coreo_uni_util_variables.planwide.results' => 'unset'},
-                {'COMPOSITE::coreo_uni_util_variables.planwide.number_violations' => 'unset'}
-            ])
-end
+# coreo_uni_util_variables "planwide" do
+#   action :set
+#   variables([
+#                 {'COMPOSITE::coreo_uni_util_variables.planwide.composite_name' => 'PLAN::stack_name'},
+#                 {'COMPOSITE::coreo_uni_util_variables.planwide.plan_name' => 'PLAN::name'},
+#                 {'COMPOSITE::coreo_uni_util_variables.planwide.results' => 'unset'},
+#                 {'COMPOSITE::coreo_uni_util_variables.planwide.number_violations' => 'unset'}
+#             ])
+# end
 
 
 coreo_uni_util_jsrunner "cloudtrail-tags-rollup" do
