@@ -158,23 +158,23 @@ variables:
        - s3-world-open-policy-all
        - s3-only-ip-based-policy
   AUDIT_AWS_CLOUDWATCH_ALERT_LIST:
-    description: "Which alerts would you like to check for? Default is all Cloudwatch alerts. Choices are cloudwatch-rule-1"
+    description: "Which alerts would you like to check for? Default is all Cloudwatch alerts. Choices are cloudwatch-inventory"
     required: false
     type: array
     default:
-      - cloudwatch-rule-1
+      - cloudwatch-inventory
   AUDIT_AWS_KMS_ALERT_LIST:
-    description: "Which alerts would you like to check for? Default is all KMS alerts. Choices are kms-rule-1"
+    description: "Which alerts would you like to check for? Default is all KMS alerts. Choices are kms--inventory"
     required: false
     type: array
     default:
-      - kms-rule-1
+      - kms-inventory
   AUDIT_AWS_SNS_ALERT_LIST:
-    description: "Which alerts would you like to check for? Default is all SNS alerts. Choices are sns-rule-1"
+    description: "Which alerts would you like to check for? Default is all SNS alerts. Choices are sns-inventory"
     required: false
     type: array
     default:
-      - sns-rule-1
+      - sns-inventory
   AUDIT_AWS_REGIONS:
     overrides:
       - AUDIT_AWS_CLOUDTRAIL_REGIONS
