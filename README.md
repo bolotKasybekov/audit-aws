@@ -71,7 +71,7 @@ This repo is designed to work with CloudCoreo. It will monitor all supported AWS
   * default: cloudwatch-inventory
 
 ### `AUDIT_AWS_KMS_ALERT_LIST`:
-  * description: Which alerts would you like to check for? Default is all KMS alerts. Choices are kms-inventory
+  * description: Which alerts would you like to check for? Default is all KMS alerts. Choices are kms--inventory
   * default: kms-inventory
 
 ### `AUDIT_AWS_SNS_ALERT_LIST`:

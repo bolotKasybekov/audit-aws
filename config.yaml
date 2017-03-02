@@ -164,7 +164,7 @@ variables:
     default:
       - cloudwatch-inventory
   AUDIT_AWS_KMS_ALERT_LIST:
-    description: "Which alerts would you like to check for? Default is all KMS alerts. Choices are kms-inventory"
+    description: "Which alerts would you like to check for? Default is all KMS alerts. Choices are kms--inventory"
     required: false
     type: array
     default:
