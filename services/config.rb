@@ -88,6 +88,41 @@ end
 
 # s3 end
 
+coreo_uni_util_notify "advise-cloudwatch-to-tag-values" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "tags-rollup-cloudwatch" do
+  action :nothing
+end
+coreo_uni_util_notify "advise-cloudwatch-rollup" do
+  action :nothing
+end
+
+# cloudwatch end
+
+coreo_uni_util_notify "advise-kms-to-tag-values" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "tags-rollup-kms" do
+  action :nothing
+end
+coreo_uni_util_notify "advise-kms-rollup" do
+  action :nothing
+end
+
+# kms end
+
+coreo_uni_util_notify "advise-sns-to-tag-values" do
+  action :nothing
+end
+coreo_uni_util_jsrunner "tags-rollup-sns" do
+  action :nothing
+end
+coreo_uni_util_notify "advise-sns-rollup" do
+  action :nothing
+end
+
+# sns end
 
 coreo_uni_util_jsrunner "splice-violation-object" do
   action :run
