@@ -87,37 +87,97 @@ coreo_uni_util_notify "advise-s3-rollup" do
 end
 
 # s3 end
+coreo_uni_util_jsrunner "tags-rollup-cloudwatch" do
+  action :nothing
+end
+
+coreo_uni_util_notify "advise-cloudwatch-to-tag-values" do
+  action :nothing
+end
+
+coreo_uni_util_notify "advise-cloudwatch-rollup" do
+  action :nothing
+end
+
+# cloudwatch end
+
+coreo_uni_util_jsrunner "tags-rollup-kms" do
+  action :nothing
+end
+coreo_uni_util_notify "advise-kms-to-tag-values" do
+  action :nothing
+end
+coreo_uni_util_notify "advise-kms-rollup" do
+  action :nothing
+end
+
+# kms end
+
+coreo_uni_util_jsrunner "tags-rollup-sns" do
+  action :nothing
+end
+coreo_uni_util_notify "advise-sns-to-tag-values" do
+  action :nothing
+end
+coreo_uni_util_notify "advise-sns-rollup" do
+  action :nothing
+end
+
+# sns end
 
 
 coreo_uni_util_jsrunner "splice-violation-object" do
   action :run
   data_type "json"
   json_input '
-  {"composite name":"PLAN::stack_name","plan name":"PLAN::name", "services": {
-  "cloudtrail": {
-   "composite name":"PLAN::stack_name",
-   "plan name":"PLAN::name",
-   "audit name": "CloudTrail",
-   "violations": COMPOSITE::coreo_aws_rule_runner_cloudtrail.advise-cloudtrail.report },
-  "ec2": {
-   "audit name": "EC2",
-   "violations": COMPOSITE::coreo_aws_rule_runner_ec2.advise-ec2.report },
-  "iam": {
-   "audit name": "IAM",
-   "violations": COMPOSITE::coreo_aws_rule_runner_iam.advise-iam.report },
-  "elb": {
-   "audit name": "ELB",
-   "violations": COMPOSITE::coreo_aws_rule_runner_elb.advise-elb.report },
-  "rds": {
-   "audit name": "RDS",
-   "violations": COMPOSITE::coreo_aws_rule_runner_rds.advise-rds.report },
-  "redshift": {
-   "audit name": "REDSHIFT",
-   "violations": COMPOSITE::coreo_aws_rule_runner_redshift.advise-redshift.report },
-  "s3": {
-   "audit name": "S3",
-   "violations": COMPOSITE::coreo_aws_rule_runner_s3.advise-s3.report }
-  }}'
+  {
+    "composite name":"PLAN::stack_name",
+    "plan name":"PLAN::name",
+    "services": {
+      "cloudtrail": {
+         "composite name":"PLAN::stack_name",
+         "plan name":"PLAN::name",
+         "audit name": "CloudTrail",
+         "violations": COMPOSITE::coreo_aws_rule_runner_cloudtrail.advise-cloudtrail.report
+      },
+      "ec2": {
+        "audit name": "EC2",
+        "violations": COMPOSITE::coreo_aws_rule_runner_ec2.advise-ec2.report
+      },
+      "cloudwatch": {
+        "audit name": "CLOUDWATCH",
+        "violations": COMPOSITE::coreo_aws_rule_runner.advise-cloudwatch.report
+      },
+      "sns": {
+        "audit name": "SNS",
+        "violations": COMPOSITE::coreo_aws_rule_runner.advise-sns.report
+      },
+      "kms": {
+        "audit name": "KMS",
+        "violations": COMPOSITE::coreo_aws_rule_runner.advise-kms.report
+      },
+      "iam": {
+        "audit name": "IAM",
+        "violations": COMPOSITE::coreo_aws_rule_runner_iam.advise-iam.report
+      },
+      "elb": {
+        "audit name": "ELB",
+        "violations": COMPOSITE::coreo_aws_rule_runner_elb.advise-elb.report
+      },
+      "rds": {
+        "audit name": "RDS",
+        "violations": COMPOSITE::coreo_aws_rule_runner_rds.advise-rds.report
+      },
+      "redshift": {
+        "audit name": "REDSHIFT",
+        "violations": COMPOSITE::coreo_aws_rule_runner_redshift.advise-redshift.report
+      },
+      "s3": {
+       "audit name": "S3",
+       "violations": COMPOSITE::coreo_aws_rule_runner_s3.advise-s3.report
+      }
+    }
+  }'
   function <<-EOH
   const wayToServices = json_input['services'];
   let newViolation = {};
@@ -167,7 +227,7 @@ coreo_uni_util_jsrunner "tags-to-notifiers-array-aws" do
   packages([
                {
                    :name => "cloudcoreo-jsrunner-commons",
-                   :version => "1.8.3"
+                   :version => "*"
                },
                {
                    :name => "js-yaml",
@@ -175,14 +235,13 @@ coreo_uni_util_jsrunner "tags-to-notifiers-array-aws" do
                }])
   json_input '{ "composite name":"PLAN::stack_name",
                 "plan name":"PLAN::name",
+                "cloud account name":"PLAN::cloud_account_name",
                 "violations": COMPOSITE::coreo_uni_util_jsrunner.splice-violation-object.return}'
   function <<-EOH
   
-
 function setTableAndSuppression() {
   let table;
   let suppression;
-
   const fs = require('fs');
   const yaml = require('js-yaml');
   try {
@@ -203,12 +262,8 @@ function setTableAndSuppression() {
   json_input['suppression'] = suppression || [];
   json_input['table'] = table || {};
 }
-
-
 setTableAndSuppression();
-
 function setAlertList() {
-
   let cloudtrailAlertListToJSON = "${AUDIT_AWS_CLOUDTRAIL_ALERT_LIST}";
   let redshiftAlertListToJSON = "${AUDIT_AWS_REDSHIFT_ALERT_LIST}";
   let rdsAlertListToJSON = "${AUDIT_AWS_RDS_ALERT_LIST}";
@@ -242,32 +297,23 @@ function setAlertList() {
   });
   
   auditAwsAlertList = JSON.stringify(auditAwsAlertList);
-
   
   json_input['alert list'] = auditAwsAlertList || [];
 }
-
-
-
 const JSON_INPUT = json_input;
 const NO_OWNER_EMAIL = "${AUDIT_AWS_ALERT_RECIPIENT}";
 const OWNER_TAG = "${AUDIT_AWS_OWNER_TAG}";
 const ALLOW_EMPTY = "${AUDIT_AWS_ALLOW_EMPTY}";
 const SEND_ON = "${AUDIT_AWS_SEND_ON}";
 const SHOWN_NOT_SORTED_VIOLATIONS_COUNTER = false;
-
-const VARIABLES = { NO_OWNER_EMAIL, OWNER_TAG,
+const SETTINGS = { NO_OWNER_EMAIL, OWNER_TAG,
      ALLOW_EMPTY, SEND_ON, SHOWN_NOT_SORTED_VIOLATIONS_COUNTER};
 const CloudCoreoJSRunner = require('cloudcoreo-jsrunner-commons');
-const AuditAWS = new CloudCoreoJSRunner(JSON_INPUT, VARIABLES);
-
-
-
-const JSONReportAfterGeneratingSuppression = AuditAWS.getJSONForAuditPanel();
-coreoExport('JSONReport', JSON.stringify(JSONReportAfterGeneratingSuppression));
-
-const notifiers = AuditAWS.getNotifiers();
-callback(notifiers);
+const AuditAWS = new CloudCoreoJSRunner(JSON_INPUT, SETTINGS);
+const newJSONInput = AuditAWS.getSortedJSONForAuditPanel();
+coreoExport('JSONReport', JSON.stringify(newJSONInput));
+const letters = AuditAWS.getLetters();
+callback(letters);
   EOH
 end
 
@@ -286,7 +332,6 @@ coreo_uni_util_jsrunner "tags-rollup-aws" do
   json_input 'COMPOSITE::coreo_uni_util_jsrunner.tags-to-notifiers-array-aws.return'
   function <<-EOH
 const notifiers = json_input;
-
 function setTextRollup() {
     let emailText = '';
     let numberOfViolations = 0;
@@ -297,16 +342,12 @@ function setTextRollup() {
             emailText += "recipient: " + notifier['endpoint']['to'] + " - " + "Violations: " + notifier['num_violations'] + "\\n";
         }
     });
-
     textRollup += 'Number of Violating Cloud Objects: ' + numberOfViolations + "\\n";
     textRollup += 'Rollup' + "\\n";
     textRollup += emailText;
 }
-
-
 let textRollup = '';
 setTextRollup();
-
 callback(textRollup);
   EOH
 end
