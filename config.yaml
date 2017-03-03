@@ -69,6 +69,7 @@ variables:
     default:
       - cloudtrail-service-disabled
       - cloudtrail-no-global-trails
+      - cloudtrail-logs-cloudwatch
   AUDIT_AWS_REDSHIFT_ALERT_LIST:
     description: "Which alerts would you like to check for? Default is all Redshift alerts. Choices are redshift-publicly-accessible,redshift-encrypted,redshift-no-version-upgrade,redshift-no-require-ssl,redshift-no-s3-logging,redshift-no-user-logging,redshift-snapshot-retention,redshift-inventory"
     required: false
