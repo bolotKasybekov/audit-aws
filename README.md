@@ -39,8 +39,8 @@ This repo is designed to work with CloudCoreo. It will monitor all supported AWS
 ## Optional variables with default
 
 ### `AUDIT_AWS_CLOUDTRAIL_ALERT_LIST`:
-  * description: Which alerts would you like to check for? Default is all Cloudtrail alerts. Possible values are cloudtrail-service-disabled,cloudtrail-no-global-trails,cloudtrail-inventory
-  * default: cloudtrail-service-disabled, cloudtrail-no-global-trails, cloudtrail-logs-cloudwatch
+  * description: Which alerts would you like to check for? Default is all Cloudtrail alerts. Possible values are cloudtrail-inventory,cloudtrail-service-disabled,cloudtrail-log-file-validating,cloudtrail-logs-cloudwatch,cloudtrail-no-global-trails
+  * default: cloudtrail-service-disabled, cloudtrail-log-file-validating, cloudtrail-logs-cloudwatch, cloudtrail-no-global-trails
 
 ### `AUDIT_AWS_REDSHIFT_ALERT_LIST`:
   * description: Which alerts would you like to check for? Default is all Redshift alerts. Choices are redshift-publicly-accessible,redshift-encrypted,redshift-no-version-upgrade,redshift-no-require-ssl,redshift-no-s3-logging,redshift-no-user-logging,redshift-snapshot-retention,redshift-inventory
