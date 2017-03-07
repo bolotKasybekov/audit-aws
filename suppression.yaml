@@ -1,4 +1,3 @@
----
 cloudtrail-service-disabled:
 - put-your-object-id-here-1: ''
 - put-your-object-id-here-2: 2017-01-10T00:00Z
@@ -8,11 +7,9 @@ cloudtrail-inventory:
 no-global-trails:
 - put-your-object-id-here-1: ''
 - put-your-object-id-here-2: 2017-01-10T00:00Z
----
 cloudwatch-rule-1:
 - put-your-object-id-here-1: ''
 - put-your-object-id-here-2: 2017-01-10T00:00Z
----
 ec2-inventory-instances:
 - put-your-object-id-here-1: ''
 - put-your-object-id-here-2: 2017-01-10T00:00Z
@@ -64,7 +61,6 @@ ec2-ports-range:
 ec2-not-used-security-groups:
 - put-your-object-id-here-1: ''
 - put-your-object-id-here-2: 2017-01-10T00:00Z
----
 elb-inventory:
 - put-your-object-id-here-1: ''
 - put-your-object-id-here-2: 2017-01-10T00:00Z
@@ -74,7 +70,6 @@ elb-old-ssl-policy:
 elb-current-ssl-policy:
 - put-your-object-id-here-1: ''
 - put-your-object-id-here-2: 2017-01-10T00:00Z
----
 iam-inventory-users:
 - put-your-object-id-here-1: ''
 - put-your-object-id-here-2: 2017-01-10T00:00Z
@@ -141,21 +136,21 @@ iam-root-access-key-1:
 iam-root-access-key-2:
 - put-your-object-id-here-1: ''
 - put-your-object-id-here-2: 2017-01-10T00:00Z
----
 kms-rule-1:
 - put-your-object-id-here-1: ''
 - put-your-object-id-here-2: 2017-01-10T00:00Z
----
 rds-short-backup-retention-period:
-- cc-57980ce2d13-kubedev: 2017-01-10T00:00Z
+- put-your-object-id-here-1: ''
+- put-your-object-id-here-2: 2017-01-10T00:00Z
 rds-no-auto-minor-version-upgrade:
 - put-your-object-id-here-1: ''
-- put-your-object-id-here-2: ''
+- put-your-object-id-here-2: 2017-01-10T00:00Z
 rds-db-publicly-accessible:
-- put-your-object-id-here: ''
+- put-your-object-id-here-1: ''
+- put-your-object-id-here-2: 2017-01-10T00:00Z
 rds-inventory:
-- cc-57980ce2d13-kubedev: 2017-01-30T14:44Z
----
+- put-your-object-id-here-1: ''
+- put-your-object-id-here-2: 2017-01-10T00:00Z
 redshift-inventory:
 - put-your-object-id-here-1: ''
 - put-your-object-id-here-2: 2017-01-10T00:00Z
@@ -177,7 +172,6 @@ redshift-no-user-logging:
 redshift-snapshot-retention:
 - put-your-object-id-here-1: ''
 - put-your-object-id-here-2: 2017-01-10T00:00Z
----
 s3-allusers-write:
 - put-your-object-id-here-1: ''
 - put-your-object-id-here-2: 2017-02-10T00:00Z
@@ -197,9 +191,8 @@ s3-authenticatedusers-read:
 - put-your-object-id-here-1: ''
 - put-your-object-id-here-2: 2017-01-10T00:00Z
 s3-logging-disabled:
-- cloudcoreo-backups-a: ''
-- api.docs.hack.cloudcoreo.com: 2017-01-10T00:00Z
-- cloudcoreo-custom-dashboards-dev: 2017-02-10T00:00Z
+- put-your-object-id-here-1: ''
+- put-your-object-id-here-2: 2017-01-10T00:00Z
 s3-world-open-policy-delete:
 - put-your-object-id-here-1: ''
 - put-your-object-id-here-2: 2017-01-10T00:00Z
@@ -218,7 +211,6 @@ s3-world-open-policy-all:
 s3-only-ip-based-policy:
 - put-your-object-id-here-1: ''
 - put-your-object-id-here-2: 2017-01-10T00:00Z
----
 sns-rule-1:
 - put-your-object-id-here-1: ''
 - put-your-object-id-here-2: 2017-01-10T00:00Z
