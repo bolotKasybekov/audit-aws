@@ -178,7 +178,6 @@ variables:
     type: array
     default:
       - sns-subscriptions-inventory
-      - sns-topics-inventory
   AUDIT_AWS_REGIONS:
     overrides:
       - AUDIT_AWS_CLOUDTRAIL_REGIONS
