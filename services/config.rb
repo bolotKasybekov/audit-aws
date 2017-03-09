@@ -301,7 +301,7 @@ const AuditAWS = new CloudCoreoJSRunner(JSON_INPUT, VARIABLES);
 const JSONReportAfterGeneratingSuppression = AuditAWS.getSortedJSONForAuditPanel();
 coreoExport('JSONReport', JSON.stringify(JSONReportAfterGeneratingSuppression));
 
-const letters = AuditAWS.getNotifiers();
+const letters = AuditAWS.getLetters();
 callback(letters);
   EOH
 end
