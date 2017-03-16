@@ -171,9 +171,10 @@ coreo_uni_util_jsrunner "splice-violation-object" do
       },
       "s3": {
        "audit name": "S3",
-       "violations": COMPOSITE::coreo_aws_rule_runner_s3.advise-s3.report
+       "violations": COMPOSITE::coreo_aws_rule_runner.advise-s3.report
       }
-    }}'
+    }
+  }'
   function <<-EOH
     const wayToServices = json_input['services'];
     let newViolation = {};
