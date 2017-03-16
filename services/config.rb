@@ -217,7 +217,6 @@ coreo_uni_util_variables "aws-update-planwide-1" do
             ])
 end
 
-
 coreo_uni_util_jsrunner "tags-to-notifiers-array-aws" do
   action :run
   data_type "json"
@@ -225,7 +224,7 @@ coreo_uni_util_jsrunner "tags-to-notifiers-array-aws" do
   packages([
                {
                    :name => "cloudcoreo-jsrunner-commons",
-                   :version => "1.9.2"
+                   :version => "1.9.6"
                },
                {
                    :name => "js-yaml",
