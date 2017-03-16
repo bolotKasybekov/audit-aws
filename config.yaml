@@ -100,12 +100,11 @@ variables:
       - iam-multiple-keys
       - iam-inactive-key-no-rotation
       - iam-active-key-no-rotation
-      - iam-passwordreuseprevention
       - iam-missing-password-policy
+      - iam-passwordreuseprevention
       - iam-expirepasswords
       - iam-no-mfa
       - iam-root-no-mfa
-      - iam-root-active-key
       - iam-root-active-password
       - iam-user-attached-policies
       - iam-password-policy-uppercase
