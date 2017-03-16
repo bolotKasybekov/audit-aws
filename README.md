@@ -39,8 +39,8 @@ This repo is designed to work with CloudCoreo. It will monitor all supported AWS
 ## Optional variables with default
 
 ### `AUDIT_AWS_CLOUDTRAIL_ALERT_LIST`:
-  * description: Which alerts would you like to check for? Default is all Cloudtrail alerts. Possible values are cloudtrail-service-disabled,cloudtrail-no-global-trails,cloudtrail-inventory
-  * default: cloudtrail-service-disabled, cloudtrail-no-global-trails
+  * description: Which alerts would you like to check for? Default is all Cloudtrail alerts. Possible values are cloudtrail-inventory,cloudtrail-service-disabled,cloudtrail-log-file-validating,cloudtrail-logs-cloudwatch,cloudtrail-no-global-trails
+  * default: cloudtrail-service-disabled, cloudtrail-log-file-validating, cloudtrail-logs-cloudwatch, cloudtrail-no-global-trails
 
 ### `AUDIT_AWS_REDSHIFT_ALERT_LIST`:
   * description: Which alerts would you like to check for? Default is all Redshift alerts. Choices are redshift-publicly-accessible,redshift-encrypted,redshift-no-version-upgrade,redshift-no-require-ssl,redshift-no-s3-logging,redshift-no-user-logging,redshift-snapshot-retention,redshift-inventory
@@ -51,8 +51,8 @@ This repo is designed to work with CloudCoreo. It will monitor all supported AWS
   * default: rds-short-backup-retention-period, rds-no-auto-minor-version-upgrade, rds-db-publicly-accessible
 
 ### `AUDIT_AWS_IAM_ALERT_LIST`:
-  * description: Which alerts would you like to check for? Default is all IAM alerts. Choices are iam-unusediamgroup,iam-multiple-keys,iam-inactive-key-no-rotation,iam-active-key-no-rotation,iam-passwordreuseprevention,iam-missing-password-policy,iam-expirepasswords,iam-no-mfa,iam-root-no-mfa,iam-root-active-key,iam-root-active-password,iam-user-attached-policies,iam-password-policy-uppercase,iam-password-policy-lowercase,iam-password-policy-symbol,iam-password-policy-number,iam-password-policy-min-length,iam-root-access-key-1,iam-root-access-key-2,iam-inventory-users,iam-inventory-roles,iam-inventory-groups,iam-inventory-policies
-  * default: iam-unusediamgroup, iam-multiple-keys, iam-inactive-key-no-rotation, iam-active-key-no-rotation, iam-passwordreuseprevention, iam-missing-password-policy, iam-expirepasswords, iam-no-mfa, iam-root-no-mfa, iam-root-active-key, iam-root-active-password, iam-user-attached-policies, iam-password-policy-uppercase, iam-password-policy-lowercase, iam-password-policy-symbol, iam-password-policy-number, iam-password-policy-min-length, iam-root-access-key-1, iam-root-access-key-2
+  * description: Which alerts would you like to check for? Default is all IAM alerts. Choices are iam-inventory-users,iam-inventory-roles,iam-inventory-policies,iam-inventory-groups,iam-unusediamgroup,iam-multiple-keys,iam-inactive-key-no-rotation,iam-active-key-no-rotation,iam-missing-password-policy,iam-passwordreuseprevention,iam-expirepasswords,iam-no-mfa,iam-root-no-mfa,iam-root-active-password,iam-user-attached-policies,iam-password-policy-uppercase,iam-password-policy-lowercase,iam-password-policy-symbol,iam-password-policy-number,iam-password-policy-min-length,iam-root-access-key-1,iam-root-access-key-2,iam-support-role,iam-user-password-not-used
+  * default: iam-unusediamgroup, iam-multiple-keys, iam-inactive-key-no-rotation, iam-active-key-no-rotation, iam-missing-password-policy, iam-passwordreuseprevention, iam-expirepasswords, iam-no-mfa, iam-root-no-mfa, iam-root-active-password, iam-user-attached-policies, iam-password-policy-uppercase, iam-password-policy-lowercase, iam-password-policy-symbol, iam-password-policy-number, iam-password-policy-min-length, iam-root-access-key-1, iam-root-access-key-2, iam-support-role, iam-user-password-not-used
 
 ### `AUDIT_AWS_ELB_ALERT_LIST`:
   * description: Which alerts would you like to check for? Default is all ELB alerts. Choices are elb-old-ssl-policy,elb-current-ssl-policy,elb-inventory
