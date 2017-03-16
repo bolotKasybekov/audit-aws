@@ -87,24 +87,23 @@ coreo_uni_util_notify "advise-s3-rollup" do
 end
 
 # s3 end
-coreo_uni_util_jsrunner "tags-rollup-cloudwatch" do
-  action :nothing
-end
 
 coreo_uni_util_notify "advise-cloudwatch-to-tag-values" do
   action :nothing
 end
-
+coreo_uni_util_jsrunner "tags-rollup-cloudwatch" do
+  action :nothing
+end
 coreo_uni_util_notify "advise-cloudwatch-rollup" do
   action :nothing
 end
 
 # cloudwatch end
 
-coreo_uni_util_jsrunner "tags-rollup-kms" do
+coreo_uni_util_notify "advise-kms-to-tag-values" do
   action :nothing
 end
-coreo_uni_util_notify "advise-kms-to-tag-values" do
+coreo_uni_util_jsrunner "tags-rollup-kms" do
   action :nothing
 end
 coreo_uni_util_notify "advise-kms-rollup" do
@@ -113,10 +112,10 @@ end
 
 # kms end
 
-coreo_uni_util_jsrunner "tags-rollup-sns" do
+coreo_uni_util_notify "advise-sns-to-tag-values" do
   action :nothing
 end
-coreo_uni_util_notify "advise-sns-to-tag-values" do
+coreo_uni_util_jsrunner "tags-rollup-sns" do
   action :nothing
 end
 coreo_uni_util_notify "advise-sns-rollup" do
@@ -124,7 +123,6 @@ coreo_uni_util_notify "advise-sns-rollup" do
 end
 
 # sns end
-
 
 coreo_uni_util_jsrunner "splice-violation-object" do
   action :run
@@ -176,8 +174,8 @@ coreo_uni_util_jsrunner "splice-violation-object" do
        "audit name": "S3",
        "violations": COMPOSITE::coreo_aws_rule_runner_s3.advise-s3.report
       }
-    }
-  }'
+    }}'
+
   function <<-EOH
   const wayToServices = json_input['services'];
   let newViolation = {};
@@ -227,7 +225,7 @@ coreo_uni_util_jsrunner "tags-to-notifiers-array-aws" do
   packages([
                {
                    :name => "cloudcoreo-jsrunner-commons",
-                   :version => "*"
+                   :version => "1.9.2"
                },
                {
                    :name => "js-yaml",
@@ -262,7 +260,9 @@ function setTableAndSuppression() {
   json_input['suppression'] = suppression || [];
   json_input['table'] = table || {};
 }
+
 setTableAndSuppression();
+
 function setAlertList() {
   let cloudtrailAlertListToJSON = "${AUDIT_AWS_CLOUDTRAIL_ALERT_LIST}";
   let redshiftAlertListToJSON = "${AUDIT_AWS_REDSHIFT_ALERT_LIST}";
@@ -297,7 +297,6 @@ function setAlertList() {
   });
   
   auditAwsAlertList = JSON.stringify(auditAwsAlertList);
-  
   json_input['alert list'] = auditAwsAlertList || [];
 }
 const JSON_INPUT = json_input;
@@ -306,6 +305,7 @@ const OWNER_TAG = "${AUDIT_AWS_OWNER_TAG}";
 const ALLOW_EMPTY = "${AUDIT_AWS_ALLOW_EMPTY}";
 const SEND_ON = "${AUDIT_AWS_SEND_ON}";
 const SHOWN_NOT_SORTED_VIOLATIONS_COUNTER = false;
+
 const SETTINGS = { NO_OWNER_EMAIL, OWNER_TAG,
      ALLOW_EMPTY, SEND_ON, SHOWN_NOT_SORTED_VIOLATIONS_COUNTER};
 const CloudCoreoJSRunner = require('cloudcoreo-jsrunner-commons');
