@@ -14,7 +14,10 @@ stack-audit-aws-sns
 "
 
 export YAMLS="
+<<<<<<< HEAD
 config
+=======
+>>>>>>> master
 table
 suppression
 "
@@ -42,11 +45,19 @@ do
     else
       if [ "$y" == "table" ]
       then
+<<<<<<< HEAD
         cat out.yaml >> table.yaml
       fi 
       if [ "$y" == "suppression" ]
       then
         cat out.yaml >> suppression.yaml
+=======
+        cat out.yaml | perl reformat.pl >> table.yaml
+      fi 
+      if [ "$y" == "suppression" ]
+      then
+        cat out.yaml | perl reformat.pl >> suppression.yaml
+>>>>>>> master
       fi
       rm -f out.yaml
     fi
