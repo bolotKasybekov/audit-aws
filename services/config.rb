@@ -128,8 +128,7 @@ coreo_uni_util_jsrunner "splice-violation-object" do
   action :run
   data_type "json"
   json_input '
-  {
-    "composite name":"PLAN::stack_name",
+  {"composite name":"PLAN::stack_name",
     "plan name":"PLAN::name",
     "services": {
       "cloudtrail": {
@@ -175,36 +174,35 @@ coreo_uni_util_jsrunner "splice-violation-object" do
        "violations": COMPOSITE::coreo_aws_rule_runner_s3.advise-s3.report
       }
     }}'
-
   function <<-EOH
-  const wayToServices = json_input['services'];
-  let newViolation = {};
-  let violationCounter = 0;
-  const auditStackKeys = Object.keys(wayToServices);
-  auditStackKeys.forEach(auditStackKey => {
-      let wayForViolation = wayToServices[auditStackKey]['violations'];
-      const violationKeys = Object.keys(wayForViolation);
-      violationKeys.forEach(violationRegion => {
-          if(!newViolation.hasOwnProperty(violationRegion)) {
-              newViolation[violationRegion] = {};
-          }
-          const ruleKeys = Object.keys(wayForViolation[violationRegion]);
-          violationCounter+= ruleKeys.length;
-          ruleKeys.forEach(objectKey => {
-              if(!newViolation[violationRegion].hasOwnProperty(objectKey)) {
-                  newViolation[violationRegion][objectKey] = {};
-                  newViolation[violationRegion][objectKey]['violations'] = {};
-              }
-              const objectKeys = Object.keys(wayForViolation[violationRegion][objectKey]['violations']);
-              objectKeys.forEach(ruleKey => {
-                  newViolation[violationRegion][objectKey]['tags'] = wayForViolation[violationRegion][objectKey]['tags'];
-                  newViolation[violationRegion][objectKey]['violations'][ruleKey] = wayForViolation[violationRegion][objectKey]['violations'][ruleKey];
-              })
-          })
-      });
-  });
-  coreoExport('violationCounter', JSON.stringify(violationCounter));
-  callback(newViolation);
+    const wayToServices = json_input['services'];
+    let newViolation = {};
+    let violationCounter = 0;
+    const auditStackKeys = Object.keys(wayToServices);
+    auditStackKeys.forEach(auditStackKey => {
+        let wayForViolation = wayToServices[auditStackKey]['violations'];
+        const violationKeys = Object.keys(wayForViolation);
+        violationKeys.forEach(violationRegion => {
+            if(!newViolation.hasOwnProperty(violationRegion)) {
+                newViolation[violationRegion] = {};
+            }
+            const ruleKeys = Object.keys(wayForViolation[violationRegion]);
+            violationCounter+= ruleKeys.length;
+            ruleKeys.forEach(objectKey => {
+                if(!newViolation[violationRegion].hasOwnProperty(objectKey)) {
+                    newViolation[violationRegion][objectKey] = {};
+                    newViolation[violationRegion][objectKey]['violations'] = {};
+                }
+                const objectKeys = Object.keys(wayForViolation[violationRegion][objectKey]['violations']);
+                objectKeys.forEach(ruleKey => {
+                    newViolation[violationRegion][objectKey]['tags'] = wayForViolation[violationRegion][objectKey]['tags'];
+                    newViolation[violationRegion][objectKey]['violations'][ruleKey] = wayForViolation[violationRegion][objectKey]['violations'][ruleKey];
+                })
+            })
+        });
+    });
+    coreoExport('violationCounter', JSON.stringify(violationCounter));
+    callback(newViolation);
   EOH
 end
 
