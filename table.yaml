@@ -10,9 +10,6 @@ cloudtrail-inventory:
   AWS Tags: __TAGS__
 cloudtrail-no-global-trails:
   Region: +__OBJECT__.violations.__RULE__.region+~https://console.aws.amazon.com/cloudtrail/home?region=+__OBJECT__.violations.__RULE__.region+#
-cloudwatch-rule-1:
-  AWS Region: +__OBJECT__.violations.__RULE__.region+
-  AWS Tags: __TAGS__
 ec2-inventory-instances:
   Instance Name: __OBJECT__~https://console.aws.amazon.com/ec2/v2/home?region=+__OBJECT__.violations.__RULE__.region+#Instances:search=+__OBJECT__.violations.__RULE__.result_info.0.object.instance_id+;sort=instanceId
   Instance Type: +__OBJECT__.violations.__RULE__.result_info.0.object.instance_type+
@@ -160,9 +157,6 @@ iam-root-access-key-1:
   Password Policy: __OBJECT__~https://us-east-1.console.aws.amazon.com/iam/home?region=+__OBJECT__.violations.__RULE__.region+#/credential_report
 iam-root-access-key-2:
   Password Policy: __OBJECT__~https://us-east-1.console.aws.amazon.com/iam/home?region=+__OBJECT__.violations.__RULE__.region+#/credential_report
-kms-rule-1:
-  AWS Region: +__OBJECT__.violations.__RULE__.region+
-  AWS Tags: __TAGS__
 rds-short-backup-retention-period:
   RDS Instance: __OBJECT__~https://console.aws.amazon.com/rds/home?region=+__OBJECT__.violations.__RULE__.region+#dbinstances:id=__OBJECT__;sf=all
   Backup Retention Period: +__OBJECT__.violations.__RULE__.result_info.0.object.backup_retention_period+
@@ -261,8 +255,5 @@ s3-world-open-policy-all:
   AWS Tags: __TAGS__
 s3-only-ip-based-policy:
   AWS Object ID: __OBJECT__~https://console.aws.amazon.com/s3/home?region=+__OBJECT__.violations.__RULE__.region+#&bucket=+__OBJECT__+&prefix=
-  AWS Region: +__OBJECT__.violations.__RULE__.region+
-  AWS Tags: __TAGS__
-sns-rule-1:
   AWS Region: +__OBJECT__.violations.__RULE__.region+
   AWS Tags: __TAGS__
