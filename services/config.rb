@@ -273,9 +273,7 @@ function setAlertList() {
   let kmsAlertListToJSON = "${AUDIT_AWS_KMS_ALERT_LIST}";
   let snsAlertListToJSON = "${AUDIT_AWS_SNS_ALERT_LIST}";
   
-  
   const alertListMap = new Set();
-  
   alertListMap.add(JSON.parse(cloudtrailAlertListToJSON.replace(/'/g, '"')));
   alertListMap.add(JSON.parse(redshiftAlertListToJSON.replace(/'/g, '"')));
   alertListMap.add(JSON.parse(rdsAlertListToJSON.replace(/'/g, '"')));
