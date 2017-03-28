@@ -76,7 +76,7 @@ This repo is designed to work with CloudCoreo. It will monitor all supported AWS
 
 ### `AUDIT_AWS_SNS_ALERT_LIST`:
   * description: Which alerts would you like to check for? Default is all SNS alerts. Choices are sns-inventory
-  * default: sns-inventory
+  * default: sns-subscriptions-inventory
 
 
 ## Optional variables with no default
