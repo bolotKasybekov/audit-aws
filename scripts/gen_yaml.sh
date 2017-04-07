@@ -14,6 +14,7 @@ stack-audit-aws-sns
 "
 
 export YAMLS="
+config
 table
 suppression
 "
