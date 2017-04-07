@@ -297,7 +297,7 @@ coreo_uni_util_variables "aws-update-planwide-2" do
   action :set
   variables([
                 {'COMPOSITE::coreo_uni_util_variables.aws-planwide.results' => 'COMPOSITE::coreo_uni_util_jsrunner.tags-to-notifiers-array-aws.JSONReport'},
-                {'COMPOSITE::coreo_uni_util_variables.aws-planwide.table' => 'COMPOSITE::coreo_uni_util_jsrunner.tags-to-notifiers-array-aws.table'}
+                {'GLOBAL::table' => 'COMPOSITE::coreo_uni_util_jsrunner.tags-to-notifiers-array-aws.table'}
             ])
 end
 
