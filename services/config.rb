@@ -5,7 +5,7 @@ coreo_uni_util_variables "aws-planwide" do
                 {'COMPOSITE::coreo_uni_util_variables.aws-planwide.composite_name' => 'PLAN::stack_name'},
                 {'COMPOSITE::coreo_uni_util_variables.aws-planwide.plan_name' => 'PLAN::name'},
                 {'COMPOSITE::coreo_uni_util_variables.aws-planwide.results' => 'unset'},
-                {'COMPOSITE::coreo_uni_util_variables.aws-planwide.number_violations' => 'unset'}
+                {'GLOBAL::number_violations' => '0'}
             ])
 end
 
@@ -128,53 +128,32 @@ coreo_uni_util_jsrunner "splice-violation-object" do
   action :run
   data_type "json"
   json_input '
-  {"composite name":"PLAN::stack_name",
-    "plan name":"PLAN::name",
-    "services": {
-      "cloudtrail": {
-         "composite name":"PLAN::stack_name",
-         "plan name":"PLAN::name",
-         "audit name": "CloudTrail",
-         "violations": COMPOSITE::coreo_aws_rule_runner_cloudtrail.advise-cloudtrail.report
-      },
-      "ec2": {
-        "audit name": "EC2",
-        "violations": COMPOSITE::coreo_aws_rule_runner_ec2.advise-ec2.report
-      },
-      "cloudwatch": {
-        "audit name": "CLOUDWATCH",
-        "violations": COMPOSITE::coreo_aws_rule_runner.advise-cloudwatch.report
-      },
-      "sns": {
-        "audit name": "SNS",
-        "violations": COMPOSITE::coreo_aws_rule_runner.advise-sns.report
-      },
-      "kms": {
-        "audit name": "KMS",
-        "violations": COMPOSITE::coreo_aws_rule_runner.advise-kms.report
-      },
-      "iam": {
-        "audit name": "IAM",
-        "violations": COMPOSITE::coreo_aws_rule_runner.advise-iam.report
-      },
-      "elb": {
-        "audit name": "ELB",
-        "violations": COMPOSITE::coreo_aws_rule_runner_elb.advise-elb.report
-      },
-      "rds": {
-        "audit name": "RDS",
-        "violations": COMPOSITE::coreo_aws_rule_runner_rds.advise-rds.report
-      },
-      "redshift": {
-        "audit name": "REDSHIFT",
-        "violations": COMPOSITE::coreo_aws_rule_runner_redshift.advise-redshift.report
-      },
-      "s3": {
-       "audit name": "S3",
-       "violations": COMPOSITE::coreo_aws_rule_runner.advise-s3.report
-      }
-    }
-  }'
+  {"composite name":"PLAN::stack_name","plan name":"PLAN::name", "services": {
+  "cloudtrail": {
+   "composite name":"PLAN::stack_name",
+   "plan name":"PLAN::name",
+   "audit name": "CloudTrail",
+    "cloud account name":"PLAN::cloud_account_name",
+   "violations": COMPOSITE::coreo_aws_rule_runner_cloudtrail.advise-cloudtrail.report },
+  "ec2": {
+   "audit name": "EC2",
+   "violations": COMPOSITE::coreo_aws_rule_runner_ec2.advise-ec2.report },
+  "iam": {
+   "audit name": "IAM",
+   "violations": COMPOSITE::coreo_aws_rule_runner.advise-iam.report },
+  "elb": {
+   "audit name": "ELB",
+   "violations": COMPOSITE::coreo_aws_rule_runner_elb.advise-elb.report },
+  "rds": {
+   "audit name": "RDS",
+   "violations": COMPOSITE::coreo_aws_rule_runner_rds.advise-rds.report },
+  "redshift": {
+   "audit name": "REDSHIFT",
+   "violations": COMPOSITE::coreo_aws_rule_runner_redshift.advise-redshift.report },
+  "s3": {
+   "audit name": "S3",
+   "violations": COMPOSITE::coreo_aws_rule_runner.advise-s3.report }
+  }}'
   function <<-EOH
     const wayToServices = json_input['services'];
     let newViolation = {};
@@ -211,7 +190,7 @@ coreo_uni_util_variables "aws-update-planwide-1" do
   action :set
   variables([
                 {'COMPOSITE::coreo_uni_util_variables.aws-planwide.results' => 'COMPOSITE::coreo_aws_rule_runner.splice-violation-object.report'},
-                {'COMPOSITE::coreo_uni_util_variables.aws-planwide.number_violations' => 'COMPOSITE::coreo_aws_rule_runner.splice-violation-object.violationCounter'},
+                {'GLOBAL::number_violations' => 'COMPOSITE::coreo_aws_rule_runner.splice-violation-object.violationCounter'},
 
             ])
 end
@@ -223,7 +202,7 @@ coreo_uni_util_jsrunner "tags-to-notifiers-array-aws" do
   packages([
                {
                    :name => "cloudcoreo-jsrunner-commons",
-                   :version => "1.9.6-beta1"
+                   :version => "1.10.7-9"
                },
                {
                    :name => "js-yaml",
@@ -318,7 +297,7 @@ coreo_uni_util_variables "aws-update-planwide-2" do
   action :set
   variables([
                 {'COMPOSITE::coreo_uni_util_variables.aws-planwide.results' => 'COMPOSITE::coreo_uni_util_jsrunner.tags-to-notifiers-array-aws.JSONReport'},
-                {'COMPOSITE::coreo_uni_util_variables.aws-planwide.table' => 'COMPOSITE::coreo_uni_util_jsrunner.tags-to-notifiers-array-aws.table'}
+                {'GLOBAL::table' => 'COMPOSITE::coreo_uni_util_jsrunner.tags-to-notifiers-array-aws.table'}
             ])
 end
 
