@@ -165,19 +165,16 @@ variables:
     required: false
     type: array
     default:
-      - cloudwatch-inventory
   AUDIT_AWS_KMS_ALERT_LIST:
     description: "Which alerts would you like to check for? Default is all KMS alerts. Choices are kms--inventory"
     required: false
     type: array
     default:
-      - kms-inventory
   AUDIT_AWS_SNS_ALERT_LIST:
     description: "Which alerts would you like to check for? Default is all SNS alerts. Choices are sns-inventory"
     required: false
     type: array
     default:
-      - sns-subscriptions-inventory
   AUDIT_AWS_REGIONS:
     overrides:
       - AUDIT_AWS_CLOUDTRAIL_REGIONS
