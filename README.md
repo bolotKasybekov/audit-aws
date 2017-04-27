@@ -66,23 +66,20 @@ This repo is designed to work with CloudCoreo. It will monitor all supported AWS
   * description: Which alerts would you like to check for? Default is all S3 alerts. Choices are s3-allusers-write,s3-allusers-write-acp,s3-allusers-read,s3-authenticatedusers-write,s3-authenticatedusers-write-acp,s3-authenticatedusers-read,s3-logging-disabled,s3-world-open-policy-delete,s3-world-open-policy-get,s3-world-open-policy-list,s3-world-open-policy-put,s3-world-open-policy-all,s3-only-ip-based-policy
   * default: s3-allusers-write, s3-allusers-write-acp, s3-allusers-read, s3-authenticatedusers-write, s3-authenticatedusers-write-acp, s3-authenticatedusers-read, s3-logging-disabled, s3-world-open-policy-delete, s3-world-open-policy-get, s3-world-open-policy-list, s3-world-open-policy-put, s3-world-open-policy-all, s3-only-ip-based-policy
 
-### `AUDIT_AWS_CLOUDWATCH_ALERT_LIST`:
-  * description: Which alerts would you like to check for? Default is all Cloudwatch alerts. Choices are cloudwatch-inventory
-  * default: cloudwatch-inventory
-
-### `AUDIT_AWS_KMS_ALERT_LIST`:
-  * description: Which alerts would you like to check for? Default is all KMS alerts. Choices are kms--inventory
-  * default: kms-inventory
-
-### `AUDIT_AWS_SNS_ALERT_LIST`:
-  * description: Which alerts would you like to check for? Default is all SNS alerts. Choices are sns-inventory
-  * default: sns-subscriptions-inventory
-
 
 ## Optional variables with no default
 
 ### `AUDIT_AWS_ALERT_RECIPIENT`:
   * description: Enter the email address(es) that will receive notifications. If more than one, separate each with a comma.
+
+### `AUDIT_AWS_CLOUDWATCH_ALERT_LIST`:
+  * description: Which alerts would you like to check for? Default is all Cloudwatch alerts. Choices are cloudwatch-inventory
+
+### `AUDIT_AWS_KMS_ALERT_LIST`:
+  * description: Which alerts would you like to check for? Default is all KMS alerts. Choices are kms--inventory
+
+### `AUDIT_AWS_SNS_ALERT_LIST`:
+  * description: Which alerts would you like to check for? Default is all SNS alerts. Choices are sns-inventory
 
 ## Tags
 1. Audit
