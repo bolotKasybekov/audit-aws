@@ -213,7 +213,7 @@ coreo_uni_util_jsrunner "tags-to-notifiers-array-aws" do
                 "cloud account name":"PLAN::cloud_account_name",
                 "violations": COMPOSITE::coreo_uni_util_jsrunner.splice-violation-object.return}'
   function <<-EOH
-  
+
 function setTableAndSuppression() {
   let table;
   let suppression;
@@ -233,7 +233,7 @@ function setTableAndSuppression() {
   }
   coreoExport('table', JSON.stringify(table));
   coreoExport('suppression', JSON.stringify(suppression));
-  
+
   json_input['suppression'] = suppression || [];
   json_input['table'] = table || {};
 }
@@ -251,7 +251,7 @@ function setAlertList() {
   let cloudwatchAlertListToJSON = "${AUDIT_AWS_CLOUDWATCH_ALERT_LIST}";
   let kmsAlertListToJSON = "${AUDIT_AWS_KMS_ALERT_LIST}";
   let snsAlertListToJSON = "${AUDIT_AWS_SNS_ALERT_LIST}";
-  
+
   const alertListMap = new Set();
   alertListMap.add(JSON.parse(cloudtrailAlertListToJSON.replace(/'/g, '"')));
   alertListMap.add(JSON.parse(redshiftAlertListToJSON.replace(/'/g, '"')));
@@ -263,14 +263,14 @@ function setAlertList() {
   alertListMap.add(JSON.parse(cloudwatchAlertListToJSON.replace(/'/g, '"')));
   alertListMap.add(JSON.parse(kmsAlertListToJSON.replace(/'/g, '"')));
   alertListMap.add(JSON.parse(snsAlertListToJSON.replace(/'/g, '"')));
-  
-  
+
+
   let auditAwsAlertList = [];
-  
+
   alertListMap.forEach(alertList => {
       auditAwsAlertList = auditAwsAlertList.concat(alertList);
   });
-  
+
   auditAwsAlertList = JSON.stringify(auditAwsAlertList);
   json_input['alert list'] = auditAwsAlertList || [];
 }
