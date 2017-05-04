@@ -1,3 +1,3 @@
-audit AWS
+AWS Best Practices Audit
 ============================
-This stack will monitor supported AWS services and alert on things CloudCoreo developers think are violations of best practices
+This composite will monitor supported AWS services and report on things CloudCoreo developers think are violations of best practices
