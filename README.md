@@ -1,10 +1,10 @@
-audit AWS
+AWS Best Practices Audit
 ============================
-This stack will monitor supported AWS services and alert on things CloudCoreo developers think are violations of best practices
+This composite will monitor supported AWS services and report on things CloudCoreo developers think are violations of best practices
 
 
 ## Description
-This repo is designed to work with CloudCoreo. It will monitor all supported AWS services against best practices for you and send a report to the email address designated by the config.yaml AUDIT&#95;AWS&#95;ALERT&#95;RECIPIENT value
+This composite will monitor all supported AWS services and report best practices violations.
 
 
 ## Hierarchy
@@ -84,7 +84,6 @@ This repo is designed to work with CloudCoreo. It will monitor all supported AWS
 ## Tags
 1. Audit
 1. Best Practices
-1. Alert
 1. AWS
 
 
