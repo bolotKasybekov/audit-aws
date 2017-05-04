@@ -4,7 +4,7 @@ This composite will monitor supported AWS services and report on things CloudCor
 
 
 ## Description
-This composite will monitor all supported AWS services and report best practices violations.
+This composite will monitor all supported AWS services and report best practices violations
 
 
 ## Hierarchy
