@@ -89,7 +89,7 @@ This repo is designed to work with CloudCoreo. It will monitor all supported AWS
 
 
 ## Categories
-1. Audit
+1. AWS Audit Policies
 
 
 ## Diagram
