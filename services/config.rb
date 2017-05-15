@@ -255,8 +255,7 @@ alertListMap.forEach(alertList => {
     auditAwsAlertList = auditAwsAlertList.concat(alertList);
 });
 
-alertListArray = JSON.Parse(auditAwsAlertList);
-json_input['alert list'] = auditAwsAlertList || [];
+const alertListArray = auditAwsAlertList;
 const ruleInputs = {};
 
 let userSuppression;
