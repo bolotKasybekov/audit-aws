@@ -202,7 +202,7 @@ coreo_uni_util_jsrunner "tags-to-notifiers-array-aws" do
   packages([
                {
                    :name => "cloudcoreo-jsrunner-commons",
-                   :version => "1.9.7-beta19"
+                   :version => "1.9.7-beta21"
                },
                {
                    :name => "js-yaml",
@@ -237,16 +237,16 @@ let kmsAlertListToJSON = "${AUDIT_AWS_KMS_ALERT_LIST}";
 let snsAlertListToJSON = "${AUDIT_AWS_SNS_ALERT_LIST}";
 
 const alertListMap = new Set();
-alertListMap.add(JSON.parse(cloudtrailAlertListToJSON.replace(/'/g, '"')));
-alertListMap.add(JSON.parse(redshiftAlertListToJSON.replace(/'/g, '"')));
-alertListMap.add(JSON.parse(rdsAlertListToJSON.replace(/'/g, '"')));
-alertListMap.add(JSON.parse(iamAlertListToJSON.replace(/'/g, '"')));
-alertListMap.add(JSON.parse(elbAlertListToJSON.replace(/'/g, '"')));
-alertListMap.add(JSON.parse(ec2AlertListToJSON.replace(/'/g, '"')));
-alertListMap.add(JSON.parse(s3AlertListToJSON.replace(/'/g, '"')));
-alertListMap.add(JSON.parse(cloudwatchAlertListToJSON.replace(/'/g, '"')));
-alertListMap.add(JSON.parse(kmsAlertListToJSON.replace(/'/g, '"')));
-alertListMap.add(JSON.parse(snsAlertListToJSON.replace(/'/g, '"')));
+alertListMap.add(cloudtrailAlertListToJSON.replace(/'/g, '"'));
+alertListMap.add(redshiftAlertListToJSON.replace(/'/g, '"'));
+alertListMap.add(rdsAlertListToJSON.replace(/'/g, '"'));
+alertListMap.add(iamAlertListToJSON.replace(/'/g, '"'));
+alertListMap.add(elbAlertListToJSON.replace(/'/g, '"'));
+alertListMap.add(ec2AlertListToJSON.replace(/'/g, '"'));
+alertListMap.add(s3AlertListToJSON.replace(/'/g, '"'));
+alertListMap.add(cloudwatchAlertListToJSON.replace(/'/g, '"'));
+alertListMap.add(kmsAlertListToJSON.replace(/'/g, '"'));
+alertListMap.add(snsAlertListToJSON.replace(/'/g, '"'));
 
 
 let auditAwsAlertList = [];
