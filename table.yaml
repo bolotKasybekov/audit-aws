@@ -13,10 +13,8 @@ cloudtrail-log-file-validating:
  "ARN": "+__OBJECT__.violator_info.trail_arn+#"
  "Region": "+__OBJECT__.violations.__RULE__.region+~https://console.aws.amazon.com/cloudtrail/home?region=+__OBJECT__.violations.__RULE__.region+#"
 cloudtrail-logs-encrypted:
- "Name": "+__OBJECT__.violator_info.name+#"
- "ARN": "+__OBJECT__.violator_info.trail_arn+#"
- "Region": "+__OBJECT__.violations.__RULE__.region+~https://console.aws.amazon.com/cloudtrail/home?region=+__OBJECT__.violations.__RULE__.region+#"
-  cloudwatch-inventory:
+ "Trail Name": "__OBJECT__"
+ "AWS Region": "+__OBJECT__.violations.__RULE__.region+"cloudwatch-inventory:
   "AWS Cloud Object Name": "__OBJECT__~https://console.aws.amazon.com/cloudwatch/home?region=+__OBJECT__.violations.__RULE__.region+#alarm:alarmFilter=ANY;name=__OBJECT__"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
 ec2-inventory-instances:
@@ -90,8 +88,8 @@ ec2-not-used-security-groups:
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": "__TAGS__"
 ec2-vpc-flow-logs:
-  "VPC ID": "__OBJECT__~https://console.aws.amazon.com/vpc/home?region=+__OBJECT__.violator_info.region+#vpcs:filter=__OBJECT__"
-  "AWS Region": "+__OBJECT__.violator_info.region+"
+  "VPC ID": "__OBJECT__~https://console.aws.amazon.com/vpc/home?region=+__OBJECT__.violations.__RULE__.region+#vpcs:filter=__OBJECT__"
+  "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "Flow Logs": "Disabled"
 elb-inventory:
   "Load Balancer": "__OBJECT__~https://console.aws.amazon.com/ec2/v2/home?region=+__OBJECT__.violations.__RULE__.region+#LoadBalancers:search=__OBJECT__"
