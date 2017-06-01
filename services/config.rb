@@ -202,93 +202,107 @@ coreo_uni_util_jsrunner "tags-to-notifiers-array-aws" do
   packages([
                {
                    :name => "cloudcoreo-jsrunner-commons",
-                   :version => "1.10.7-9"
+                   :version => "1.9.7-beta22"
                },
                {
                    :name => "js-yaml",
                    :version => "3.7.0"
                }])
-  json_input '{ "composite name":"PLAN::stack_name",
-                "plan name":"PLAN::name",
-                "cloud account name":"PLAN::cloud_account_name",
+  json_input '{ "compositeName":"PLAN::stack_name",
+                "planName":"PLAN::name",
+                "cloudAccountName": "PLAN::cloud_account_name",
                 "violations": COMPOSITE::coreo_uni_util_jsrunner.splice-violation-object.return}'
   function <<-EOH
-
-function setTableAndSuppression() {
-  let table;
-  let suppression;
-  const fs = require('fs');
-  const yaml = require('js-yaml');
-  try {
-      suppression = yaml.safeLoad(fs.readFileSync('./suppression.yaml', 'utf8'));
-  } catch (e) {
-      console.log("Error reading suppression.yaml file: " , e);
-      suppression = {};
-  }
-  try {
-      table = yaml.safeLoad(fs.readFileSync('./table.yaml', 'utf8'));
-  } catch (e) {
-      console.log("Error reading table.yaml file: ", e);
-      table = {};
-  }
-  coreoExport('table', JSON.stringify(table));
-  coreoExport('suppression', JSON.stringify(suppression));
-
-  json_input['suppression'] = suppression || [];
-  json_input['table'] = table || {};
-}
-
-setTableAndSuppression();
-
-function setAlertList() {
-  let cloudtrailAlertListToJSON = "${AUDIT_AWS_CLOUDTRAIL_ALERT_LIST}";
-  let redshiftAlertListToJSON = "${AUDIT_AWS_REDSHIFT_ALERT_LIST}";
-  let rdsAlertListToJSON = "${AUDIT_AWS_RDS_ALERT_LIST}";
-  let iamAlertListToJSON = "${AUDIT_AWS_IAM_ALERT_LIST}";
-  let elbAlertListToJSON = "${AUDIT_AWS_ELB_ALERT_LIST}";
-  let ec2AlertListToJSON = "${AUDIT_AWS_EC2_ALERT_LIST}";
-  let s3AlertListToJSON = "${AUDIT_AWS_S3_ALERT_LIST}";
-  let cloudwatchAlertListToJSON = "${AUDIT_AWS_CLOUDWATCH_ALERT_LIST}";
-  let kmsAlertListToJSON = "${AUDIT_AWS_KMS_ALERT_LIST}";
-  let snsAlertListToJSON = "${AUDIT_AWS_SNS_ALERT_LIST}";
-
-  const alertListMap = new Set();
-  alertListMap.add(JSON.parse(cloudtrailAlertListToJSON.replace(/'/g, '"')));
-  alertListMap.add(JSON.parse(redshiftAlertListToJSON.replace(/'/g, '"')));
-  alertListMap.add(JSON.parse(rdsAlertListToJSON.replace(/'/g, '"')));
-  alertListMap.add(JSON.parse(iamAlertListToJSON.replace(/'/g, '"')));
-  alertListMap.add(JSON.parse(elbAlertListToJSON.replace(/'/g, '"')));
-  alertListMap.add(JSON.parse(ec2AlertListToJSON.replace(/'/g, '"')));
-  alertListMap.add(JSON.parse(s3AlertListToJSON.replace(/'/g, '"')));
-  alertListMap.add(JSON.parse(cloudwatchAlertListToJSON.replace(/'/g, '"')));
-  alertListMap.add(JSON.parse(kmsAlertListToJSON.replace(/'/g, '"')));
-  alertListMap.add(JSON.parse(snsAlertListToJSON.replace(/'/g, '"')));
-
-
-  let auditAwsAlertList = [];
-
-  alertListMap.forEach(alertList => {
-      auditAwsAlertList = auditAwsAlertList.concat(alertList);
-  });
-
-  auditAwsAlertList = JSON.stringify(auditAwsAlertList);
-  json_input['alert list'] = auditAwsAlertList || [];
-}
-const JSON_INPUT = json_input;
+const compositeName = json_input.compositeName;
+const planName = json_input.planName;
+const cloudAccount = json_input.cloudAccountName;
+const cloudObjects = json_input.violations;
 const NO_OWNER_EMAIL = "${AUDIT_AWS_ALERT_RECIPIENT}";
 const OWNER_TAG = "${AUDIT_AWS_OWNER_TAG}";
 const ALLOW_EMPTY = "${AUDIT_AWS_ALLOW_EMPTY}";
 const SEND_ON = "${AUDIT_AWS_SEND_ON}";
-const SHOWN_NOT_SORTED_VIOLATIONS_COUNTER = false;
-
-const SETTINGS = { NO_OWNER_EMAIL, OWNER_TAG,
-     ALLOW_EMPTY, SEND_ON, SHOWN_NOT_SORTED_VIOLATIONS_COUNTER};
+let cloudtrailAlertListToJSON = "${AUDIT_AWS_CLOUDTRAIL_ALERT_LIST}";
+let redshiftAlertListToJSON = "${AUDIT_AWS_REDSHIFT_ALERT_LIST}";
+let rdsAlertListToJSON = "${AUDIT_AWS_RDS_ALERT_LIST}";
+let iamAlertListToJSON = "${AUDIT_AWS_IAM_ALERT_LIST}";
+let elbAlertListToJSON = "${AUDIT_AWS_ELB_ALERT_LIST}";
+let ec2AlertListToJSON = "${AUDIT_AWS_EC2_ALERT_LIST}";
+let s3AlertListToJSON = "${AUDIT_AWS_S3_ALERT_LIST}";
+let cloudwatchAlertListToJSON = "${AUDIT_AWS_CLOUDWATCH_ALERT_LIST}";
+let kmsAlertListToJSON = "${AUDIT_AWS_KMS_ALERT_LIST}";
+let snsAlertListToJSON = "${AUDIT_AWS_SNS_ALERT_LIST}";
+const alertListMap = new Set();
+alertListMap.add(cloudtrailAlertListToJSON.replace(/'/g, '"'));
+alertListMap.add(redshiftAlertListToJSON.replace(/'/g, '"'));
+alertListMap.add(rdsAlertListToJSON.replace(/'/g, '"'));
+alertListMap.add(iamAlertListToJSON.replace(/'/g, '"'));
+alertListMap.add(elbAlertListToJSON.replace(/'/g, '"'));
+alertListMap.add(ec2AlertListToJSON.replace(/'/g, '"'));
+alertListMap.add(s3AlertListToJSON.replace(/'/g, '"'));
+alertListMap.add(cloudwatchAlertListToJSON.replace(/'/g, '"'));
+alertListMap.add(kmsAlertListToJSON.replace(/'/g, '"'));
+alertListMap.add(snsAlertListToJSON.replace(/'/g, '"'));
+let auditAwsAlertList = [];
+alertListMap.forEach(alertList => {
+    auditAwsAlertList = auditAwsAlertList.concat(alertList);
+});
+const alertListArray = auditAwsAlertList;
+const ruleInputs = {};
+let userSuppression;
+let userSchemes;
+const fs = require('fs');
+const yaml = require('js-yaml');
+function setSuppression() {
+  try {
+    userSuppression = yaml.safeLoad(fs.readFileSync('./suppression.yaml', 'utf8'));
+  } catch (e) {
+    console.log(`Error reading suppression.yaml file`);
+    userSuppression = [];
+  }
+  coreoExport('suppression', JSON.stringify(userSuppression));
+}
+function setTable() {
+  try {
+    userSchemes = yaml.safeLoad(fs.readFileSync('./table.yaml', 'utf8'));
+  } catch (e) {
+    console.log(`Error reading table.yaml file`);
+    userSchemes = {};
+  }
+  coreoExport('table', JSON.stringify(userSchemes));
+}
+setSuppression();
+setTable();
+const argForConfig = {
+    NO_OWNER_EMAIL, cloudObjects, userSuppression, OWNER_TAG,
+    userSchemes, alertListArray, ruleInputs, ALLOW_EMPTY,
+    SEND_ON, cloudAccount, compositeName, planName
+}
+function createConfig(argForConfig) {
+    let JSON_INPUT = {
+        compositeName: argForConfig.compositeName,
+        planName: argForConfig.planName,
+        violations: argForConfig.cloudObjects,
+        userSchemes: argForConfig.userSchemes,
+        userSuppression: argForConfig.userSuppression,
+        alertList: argForConfig.alertListArray,
+        disabled: argForConfig.ruleInputs,
+        cloudAccount: argForConfig.cloudAccount
+    };
+    let SETTINGS = {
+        NO_OWNER_EMAIL: argForConfig.NO_OWNER_EMAIL,
+        OWNER_TAG: argForConfig.OWNER_TAG,
+        ALLOW_EMPTY: argForConfig.ALLOW_EMPTY, SEND_ON: argForConfig.SEND_ON,
+        SHOWN_NOT_SORTED_VIOLATIONS_COUNTER: false
+    };
+    return {JSON_INPUT, SETTINGS};
+}
+const {JSON_INPUT, SETTINGS} = createConfig(argForConfig);
 const CloudCoreoJSRunner = require('cloudcoreo-jsrunner-commons');
-const AuditAWS = new CloudCoreoJSRunner(JSON_INPUT, SETTINGS);
-const newJSONInput = AuditAWS.getSortedJSONForAuditPanel();
-coreoExport('JSONReport', JSON.stringify(newJSONInput));
-const letters = AuditAWS.getLetters();
-callback(letters);
+const emails = CloudCoreoJSRunner.createEmails(JSON_INPUT, SETTINGS);
+const suppressionJSON = CloudCoreoJSRunner.createJSONWithSuppress(JSON_INPUT, SETTINGS);
+coreoExport('JSONReport', JSON.stringify(suppressionJSON));
+coreoExport('report', JSON.stringify(suppressionJSON['violations']));
+callback(emails);
   EOH
 end
 
