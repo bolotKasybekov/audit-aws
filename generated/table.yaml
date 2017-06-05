@@ -14,7 +14,8 @@ cloudtrail-log-file-validating:
  "Region": "+__OBJECT__.violations.__RULE__.region+~https://console.aws.amazon.com/cloudtrail/home?region=+__OBJECT__.violations.__RULE__.region+#"
 cloudtrail-logs-encrypted:
  "Trail Name": "__OBJECT__"
- "AWS Region": "+__OBJECT__.violations.__RULE__.region+"cloudwatch-inventory:
+ "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
+cloudwatch-inventory:
   "AWS Cloud Object Name": "__OBJECT__~https://console.aws.amazon.com/cloudwatch/home?region=+__OBJECT__.violations.__RULE__.region+#alarm:alarmFilter=ANY;name=__OBJECT__"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
 ec2-inventory-instances:
@@ -108,7 +109,8 @@ elb-old-ssl-policy:
 elb-current-ssl-policy:
   "Load Balancer": "__OBJECT__~https://console.aws.amazon.com/ec2/v2/home?region=+__OBJECT__.violations.__RULE__.region+#LoadBalancers:search=__OBJECT__"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
-  "AWS Tags": "__TAGS__"iam-inventory-users:
+  "AWS Tags": "__TAGS__"
+iam-inventory-users:
   "IAM Users": "__OBJECT__~https://console.aws.amazon.com/iam/home?region=+__OBJECT__.violations.__RULE__.region+#/users/__OBJECT__"
   "User ID": "+__OBJECT__.violations.__RULE__.result_info.0.object.user_id+"
   "User ARN": "+__OBJECT__.violations.__RULE__.result_info.0.object.arn+"
@@ -193,7 +195,8 @@ iam-mfa-password-holders:
 iam-unused-access:
   "Password Policy": "__OBJECT__~https://us-east-1.console.aws.amazon.com/iam/home?region=+__OBJECT__.violations.__RULE__.region+#/credential_report"   
 iam-initialization-access-key:
-  "Password Policy": "__OBJECT__~https://us-east-1.console.aws.amazon.com/iam/home?region=+__OBJECT__.violations.__RULE__.region+#/credential_report"kms-inventory:
+  "Password Policy": "__OBJECT__~https://us-east-1.console.aws.amazon.com/iam/home?region=+__OBJECT__.violations.__RULE__.region+#/credential_report"
+kms-inventory:
   "AWS Cloud Object Name": "__OBJECT__"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": "__TAGS__"
@@ -252,7 +255,8 @@ redshift-no-user-logging:
 redshift-snapshot-retention:
   "AWS Object ID": "__OBJECT__~https://+__OBJECT__.violations.__RULE__.region+.console.aws.amazon.com/redshift/home?region=+__OBJECT__.violations.__RULE__.region+#cluster-details:cluster=__OBJECT__"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
-  "AWS Tags": "__TAGS__"s3-allusers-write:
+  "AWS Tags": "__TAGS__"
+s3-allusers-write:
   "AWS Object ID": "__OBJECT__~https://console.aws.amazon.com/s3/home?region=+__OBJECT__.violations.__RULE__.region+#&bucket=+__OBJECT__+&prefix="
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": "__TAGS__"
