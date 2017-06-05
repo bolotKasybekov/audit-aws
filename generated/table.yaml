@@ -248,68 +248,64 @@ redshift-no-user-logging:
   "AWS Object ID": "__OBJECT__~https://+__OBJECT__.violations.__RULE__.region+.console.aws.amazon.com/redshift/home?region=+__OBJECT__.violations.__RULE__.region+#edit-parameter-group:param-group=__OBJECT__;cluster="
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": "__TAGS__"
-redshift-no-user-logging:
-  "AWS Object ID": "__OBJECT__~https://+__OBJECT__.violations.__RULE__.region+.console.aws.amazon.com/redshift/home?region=+__OBJECT__.violations.__RULE__.region+#edit-parameter-group:param-group=__OBJECT__;cluster="
-  "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
-  "AWS Tags": "__TAGS__"
 redshift-snapshot-retention:
   "AWS Object ID": "__OBJECT__~https://+__OBJECT__.violations.__RULE__.region+.console.aws.amazon.com/redshift/home?region=+__OBJECT__.violations.__RULE__.region+#cluster-details:cluster=__OBJECT__"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": "__TAGS__"
 s3-allusers-write:
-  "AWS Object ID": "__OBJECT__~https://console.aws.amazon.com/s3/home?region=+__OBJECT__.violations.__RULE__.region+#&bucket=__OBJECT__&prefix="
+  "AWS S3 Bucket": "__OBJECT__~https://console.aws.amazon.com/s3/buckets/__OBJECT__/?region=+__OBJECT__.violations.__RULE__.region+&tab=overview#&bucket=__OBJECT__"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": "__TAGS__"
 s3-allusers-write-acp:
-  "AWS Object ID": "__OBJECT__~https://console.aws.amazon.com/s3/home?region=+__OBJECT__.violations.__RULE__.region+#&bucket=__OBJECT__&prefix="
+  "AWS S3 Bucket": "__OBJECT__~https://console.aws.amazon.com/s3/buckets/__OBJECT__/?region=+__OBJECT__.violations.__RULE__.region+&tab=overview#&bucket=__OBJECT__"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": "__TAGS__"
 s3-allusers-read:
-  "AWS Object ID": "__OBJECT__~https://console.aws.amazon.com/s3/home?region=+__OBJECT__.violations.__RULE__.region+#&bucket=__OBJECT__&prefix="
+  "AWS S3 Bucket": "__OBJECT__~https://console.aws.amazon.com/s3/buckets/__OBJECT__/?region=+__OBJECT__.violations.__RULE__.region+&tab=overview#&bucket=__OBJECT__"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": "__TAGS__"
 s3-authenticatedusers-write:
-  "AWS Object ID": "__OBJECT__~https://console.aws.amazon.com/s3/home?region=+__OBJECT__.violations.__RULE__.region+#&bucket=__OBJECT__&prefix="
+  "AWS S3 Bucket": "__OBJECT__~https://console.aws.amazon.com/s3/buckets/__OBJECT__/?region=+__OBJECT__.violations.__RULE__.region+&tab=overview#&bucket=__OBJECT__"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": "__TAGS__"
 s3-authenticatedusers-write-acp:
-  "AWS Object ID": "__OBJECT__~https://console.aws.amazon.com/s3/home?region=+__OBJECT__.violations.__RULE__.region+#&bucket=__OBJECT__&prefix="
+  "AWS S3 Bucket": "__OBJECT__~https://console.aws.amazon.com/s3/buckets/__OBJECT__/?region=+__OBJECT__.violations.__RULE__.region+&tab=overview#&bucket=__OBJECT__"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": "__TAGS__"
 s3-authenticatedusers-read:
-  "AWS Object ID": "__OBJECT__~https://console.aws.amazon.com/s3/home?region=+__OBJECT__.violations.__RULE__.region+#&bucket=__OBJECT__&prefix="
+  "AWS S3 Bucket": "__OBJECT__~https://console.aws.amazon.com/s3/buckets/__OBJECT__/?region=+__OBJECT__.violations.__RULE__.region+&tab=overview#&bucket=__OBJECT__"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": "__TAGS__"
 s3-logging-disabled:
-  "AWS Object ID": "__OBJECT__~https://console.aws.amazon.com/s3/home?region=+__OBJECT__.violations.__RULE__.region+#&bucket=__OBJECT__&prefix="
+  "AWS S3 Bucket": "__OBJECT__~https://console.aws.amazon.com/s3/buckets/__OBJECT__/?region=+__OBJECT__.violations.__RULE__.region+&tab=overview#&bucket=__OBJECT__"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": "__TAGS__"
 s3-world-open-policy-delete:
-  "AWS Object ID": "__OBJECT__~https://console.aws.amazon.com/s3/home?region=+__OBJECT__.violations.__RULE__.region+#&bucket=__OBJECT__&prefix="
+  "AWS S3 Bucket": "__OBJECT__~https://console.aws.amazon.com/s3/buckets/__OBJECT__/?region=+__OBJECT__.violations.__RULE__.region+&tab=overview#&bucket=__OBJECT__"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": "__TAGS__"
 s3-world-open-policy-get:
-  "AWS Object ID": "__OBJECT__~https://console.aws.amazon.com/s3/home?region=+__OBJECT__.violations.__RULE__.region+#&bucket=__OBJECT__&prefix="
+  "AWS S3 Bucket": "__OBJECT__~https://console.aws.amazon.com/s3/buckets/__OBJECT__/?region=+__OBJECT__.violations.__RULE__.region+&tab=overview#&bucket=__OBJECT__"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": "__TAGS__"
 s3-world-open-policy-list:
-  "AWS Object ID": "__OBJECT__~https://console.aws.amazon.com/s3/home?region=+__OBJECT__.violations.__RULE__.region+#&bucket=__OBJECT__&prefix="
+  "AWS S3 Bucket": "__OBJECT__~https://console.aws.amazon.com/s3/buckets/__OBJECT__/?region=+__OBJECT__.violations.__RULE__.region+&tab=overview#&bucket=__OBJECT__"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": "__TAGS__"
 s3-world-open-policy-put:
-  "AWS Object ID": "__OBJECT__~https://console.aws.amazon.com/s3/home?region=+__OBJECT__.violations.__RULE__.region+#&bucket=__OBJECT__&prefix="
+  "AWS S3 Bucket": "__OBJECT__~https://console.aws.amazon.com/s3/buckets/__OBJECT__/?region=+__OBJECT__.violations.__RULE__.region+&tab=overview#&bucket=__OBJECT__"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": "__TAGS__"
 s3-world-open-policy-all:
-  "AWS Object ID": "__OBJECT__~https://console.aws.amazon.com/s3/home?region=+__OBJECT__.violations.__RULE__.region+#&bucket=__OBJECT__&prefix="
+  "AWS S3 Bucket": "__OBJECT__~https://console.aws.amazon.com/s3/buckets/__OBJECT__/?region=+__OBJECT__.violations.__RULE__.region+&tab=overview#&bucket=__OBJECT__"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": "__TAGS__"
 s3-only-ip-based-policy:
-  "AWS Object ID": "__OBJECT__~https://console.aws.amazon.com/s3/home?region=+__OBJECT__.violations.__RULE__.region+#&bucket=__OBJECT__&prefix="
+  "AWS S3 Bucket": "__OBJECT__~https://console.aws.amazon.com/s3/buckets/__OBJECT__/?region=+__OBJECT__.violations.__RULE__.region+&tab=overview#&bucket=__OBJECT__"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": "__TAGS__"
 s3-authenticatedusers-access:
-  "AWS Object ID": "__OBJECT__~https://console.aws.amazon.com/s3/home?region=+__OBJECT__.violations.__RULE__.region+#&bucket=__OBJECT__&prefix="
+  "AWS S3 Bucket": "__OBJECT__~https://console.aws.amazon.com/s3/buckets/__OBJECT__/?region=+__OBJECT__.violations.__RULE__.region+&tab=overview#&bucket=__OBJECT__"
   "AWS Region": "+__OBJECT__.violations.__RULE__.region+"
   "AWS Tags": "__TAGS__"
 sns-topics-inventory:
