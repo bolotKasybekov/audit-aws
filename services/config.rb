@@ -213,18 +213,14 @@ coreo_uni_util_jsrunner "tags-to-notifiers-array-aws" do
                 "cloudAccountName": "PLAN::cloud_account_name",
                 "violations": COMPOSITE::coreo_uni_util_jsrunner.splice-violation-object.return}'
   function <<-EOH
-
 const compositeName = json_input.compositeName;
 const planName = json_input.planName;
 const cloudAccount = json_input.cloudAccountName;
 const cloudObjects = json_input.violations;
-
-
 const NO_OWNER_EMAIL = "${AUDIT_AWS_ALERT_RECIPIENT}";
 const OWNER_TAG = "${AUDIT_AWS_OWNER_TAG}";
 const ALLOW_EMPTY = "${AUDIT_AWS_ALLOW_EMPTY}";
 const SEND_ON = "${AUDIT_AWS_SEND_ON}";
-
 let cloudtrailAlertListToJSON = "${AUDIT_AWS_CLOUDTRAIL_ALERT_LIST}";
 let redshiftAlertListToJSON = "${AUDIT_AWS_REDSHIFT_ALERT_LIST}";
 let rdsAlertListToJSON = "${AUDIT_AWS_RDS_ALERT_LIST}";
@@ -235,7 +231,6 @@ let s3AlertListToJSON = "${AUDIT_AWS_S3_ALERT_LIST}";
 let cloudwatchAlertListToJSON = "${AUDIT_AWS_CLOUDWATCH_ALERT_LIST}";
 let kmsAlertListToJSON = "${AUDIT_AWS_KMS_ALERT_LIST}";
 let snsAlertListToJSON = "${AUDIT_AWS_SNS_ALERT_LIST}";
-
 const alertListMap = new Set();
 alertListMap.add(cloudtrailAlertListToJSON.replace(/'/g, '"'));
 alertListMap.add(redshiftAlertListToJSON.replace(/'/g, '"'));
@@ -247,23 +242,16 @@ alertListMap.add(s3AlertListToJSON.replace(/'/g, '"'));
 alertListMap.add(cloudwatchAlertListToJSON.replace(/'/g, '"'));
 alertListMap.add(kmsAlertListToJSON.replace(/'/g, '"'));
 alertListMap.add(snsAlertListToJSON.replace(/'/g, '"'));
-
-
 let auditAwsAlertList = [];
-
 alertListMap.forEach(alertList => {
     auditAwsAlertList = auditAwsAlertList.concat(alertList);
 });
-
 const alertListArray = auditAwsAlertList;
 const ruleInputs = {};
-
 let userSuppression;
 let userSchemes;
-
 const fs = require('fs');
 const yaml = require('js-yaml');
-
 function setSuppression() {
   try {
     userSuppression = yaml.safeLoad(fs.readFileSync('./suppression.yaml', 'utf8'));
@@ -273,7 +261,6 @@ function setSuppression() {
   }
   coreoExport('suppression', JSON.stringify(userSuppression));
 }
-
 function setTable() {
   try {
     userSchemes = yaml.safeLoad(fs.readFileSync('./table.yaml', 'utf8'));
@@ -285,14 +272,11 @@ function setTable() {
 }
 setSuppression();
 setTable();
-
 const argForConfig = {
     NO_OWNER_EMAIL, cloudObjects, userSuppression, OWNER_TAG,
     userSchemes, alertListArray, ruleInputs, ALLOW_EMPTY,
     SEND_ON, cloudAccount, compositeName, planName
 }
-
-
 function createConfig(argForConfig) {
     let JSON_INPUT = {
         compositeName: argForConfig.compositeName,
@@ -312,16 +296,12 @@ function createConfig(argForConfig) {
     };
     return {JSON_INPUT, SETTINGS};
 }
-
 const {JSON_INPUT, SETTINGS} = createConfig(argForConfig);
 const CloudCoreoJSRunner = require('cloudcoreo-jsrunner-commons');
-
 const emails = CloudCoreoJSRunner.createEmails(JSON_INPUT, SETTINGS);
 const suppressionJSON = CloudCoreoJSRunner.createJSONWithSuppress(JSON_INPUT, SETTINGS);
-
 coreoExport('JSONReport', JSON.stringify(suppressionJSON));
 coreoExport('report', JSON.stringify(suppressionJSON['violations']));
-
 callback(emails);
   EOH
 end
