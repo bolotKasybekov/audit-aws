@@ -146,10 +146,10 @@ coreo_uni_util_jsrunner "splice-violation-object" do
    "violations": COMPOSITE::coreo_aws_rule_runner_elb.advise-elb.report },
   "rds": {
    "audit name": "RDS",
-   "violations": COMPOSITE::coreo_aws_rule_runner_rds.advise-rds.report },
+   "violations": COMPOSITE::coreo_aws_rule_runner.advise-rds.report },
   "redshift": {
    "audit name": "REDSHIFT",
-   "violations": COMPOSITE::coreo_aws_rule_runner_redshift.advise-redshift.report },
+   "violations": COMPOSITE::coreo_aws_rule_runner.advise-redshift.report },
   "s3": {
    "audit name": "S3",
    "violations": COMPOSITE::coreo_aws_rule_runner.advise-s3.report }
