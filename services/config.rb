@@ -143,7 +143,7 @@ coreo_uni_util_jsrunner "splice-violation-object" do
    "violations": COMPOSITE::coreo_aws_rule_runner.advise-iam.report },
   "elb": {
    "audit name": "ELB",
-   "violations": COMPOSITE::coreo_aws_rule_runner_elb.advise-elb.report },
+   "violations": COMPOSITE::coreo_aws_rule_runner.advise-elb.report },
   "rds": {
    "audit name": "RDS",
    "violations": COMPOSITE::coreo_aws_rule_runner.advise-rds.report },
