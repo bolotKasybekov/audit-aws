@@ -134,7 +134,7 @@ coreo_uni_util_jsrunner "splice-violation-object" do
    "plan name":"PLAN::name",
    "audit name": "CloudTrail",
     "cloud account name":"PLAN::cloud_account_name",
-   "violations": COMPOSITE::coreo_aws_rule_runner_cloudtrail.advise-cloudtrail.report },
+   "violations": COMPOSITE::coreo_aws_rule_runner.advise-cloudtrail.report },
   "ec2": {
    "audit name": "EC2",
    "violations": COMPOSITE::coreo_aws_rule_runner.advise-ec2.report },
