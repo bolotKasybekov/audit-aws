@@ -19,6 +19,7 @@ coreo_uni_util_notify "advise-cloudtrail-rollup" do
   action :nothing
 end
 
+
 # cloudtrail end
 coreo_uni_util_jsrunner "ec2-tags-rollup" do
   action :nothing
