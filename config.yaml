@@ -186,7 +186,6 @@ variables:
       - AUDIT_AWS_ELB_REGIONS
       - AUDIT_AWS_REDSHIFT_REGIONS
       - AUDIT_AWS_RDS_REGIONS
-      - AUDIT_AWS_S3_REGIONS
       - AUDIT_AWS_CLOUDWATCH_REGIONS
       - AUDIT_AWS_KMS_REGIONS
       - AUDIT_AWS_SNS_REGIONS
@@ -208,3 +207,9 @@ variables:
       - eu-west-1
       - eu-west-2
       - sa-east-1
+  AUDIT_AWS_S3_REGIONS:
+    description: "dont touch this"
+    required: true
+    type: array
+    default:
+      - PLAN::region
