@@ -328,17 +328,23 @@ coreo_uni_util_jsrunner "tags-rollup-aws" do
 const notifiers = json_input;
 function setTextRollup() {
     let emailText = '';
+    let allReport = '';
     let numberOfViolations = 0;
     notifiers.forEach(notifier => {
         const hasEmail = notifier['endpoint']['to'].length;
         if(hasEmail) {
             numberOfViolations += parseInt(notifier['num_violations']);
             emailText += "recipient: " + notifier['endpoint']['to'] + " - " + "Violations: " + notifier['num_violations'] + "\\n";
+            allReport += notifier['payload']+"\n__________________________\n";  
         }
     });
-    textRollup += 'Number of Violating Cloud Objects: ' + numberOfViolations + "\\n";
+
+    textRollup += 'Total Number of Violating Cloud Objects: ' + numberOfViolations + "\\n";
     textRollup += 'Rollup' + "\\n";
     textRollup += emailText;
+    
+    textRollup += allReport;
+
 }
 let textRollup = '';
 setTextRollup();
