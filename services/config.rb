@@ -335,7 +335,7 @@ function setTextRollup() {
         if(hasEmail) {
             numberOfViolations += parseInt(notifier['num_violations']);
             emailText += "recipient: " + notifier['endpoint']['to'] + " - " + "Violations: " + notifier['num_violations'] + "\\n";
-            allReport += notifier['payload']+"\n__________________________\n";  
+            allReport += notifier['payload'];  
         }
     });
 
