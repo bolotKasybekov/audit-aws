@@ -367,7 +367,7 @@ composite name: PLAN::stack_name
 plan name: PLAN::name
 COMPOSITE::coreo_uni_util_jsrunner.tags-rollup-aws.return
   '
-  payload_type 'text'
+  payload_type 'html'
   endpoint ({
       :to => '${AUDIT_AWS_ALERT_RECIPIENT}', :subject => 'CloudCoreo aws rule results on PLAN::stack_name :: PLAN::name'
   })
