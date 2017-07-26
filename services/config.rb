@@ -203,7 +203,7 @@ coreo_uni_util_jsrunner "tags-to-notifiers-array-aws" do
   packages([
                {
                    :name => "cloudcoreo-jsrunner-commons",
-                   :version => "1.10.7-beta57"
+                   :version => "1.10.7-beta59"
                },
                {
                    :name => "js-yaml",
@@ -211,6 +211,7 @@ coreo_uni_util_jsrunner "tags-to-notifiers-array-aws" do
                }])
   json_input '{ "compositeName":"PLAN::stack_name",
                 "planName":"PLAN::name",
+                "teamName":"PLAN::team_name",
                 "cloudAccountName": "PLAN::cloud_account_name",
                 "violations": COMPOSITE::coreo_uni_util_jsrunner.splice-violation-object.return}'
   function <<-EOH
@@ -218,6 +219,7 @@ const compositeName = json_input.compositeName;
 const planName = json_input.planName;
 const cloudAccount = json_input.cloudAccountName;
 const cloudObjects = json_input.violations;
+const teamName = json_input.teamName;
 
 const NO_OWNER_EMAIL = "${AUDIT_AWS_ALERT_RECIPIENT}";
 const OWNER_TAG = "${AUDIT_AWS_OWNER_TAG}";
@@ -296,13 +298,14 @@ setTable();
 const argForConfig = {
     NO_OWNER_EMAIL, cloudObjects, userSuppression, OWNER_TAG,
     userSchemes, alertListArray, ruleInputs, ALLOW_EMPTY,
-    SEND_ON, cloudAccount, compositeName, planName, htmlReportSubject
+    SEND_ON, cloudAccount, compositeName, planName, htmlReportSubject, teamName
 }
 function createConfig(argForConfig) {
     let JSON_INPUT = {
         compositeName: argForConfig.compositeName,
         htmlReportSubject: argForConfig.htmlReportSubject,
         planName: argForConfig.planName,
+        teamName: argForConfig.teamName,
         violations: argForConfig.cloudObjects,
         userSchemes: argForConfig.userSchemes,
         userSuppression: argForConfig.userSuppression,
@@ -352,14 +355,14 @@ function setTextRollup() {
         if(hasEmail) {
             numberOfViolations += parseInt(notifier['num_violations']);
             emailText += "recipient: " + notifier['endpoint']['to'] + " - " + "Violations: " + notifier['num_violations'] + "\\n";
-            allReport += notifier['payload'];  
+            allReport += notifier['payload'];
         }
     });
 
     textRollup += 'Total Number of Violating Cloud Objects: ' + numberOfViolations + "\\n";
     textRollup += 'Rollup' + "\\n";
     textRollup += emailText;
-    
+
     textRollup += allReport;
 
 }
