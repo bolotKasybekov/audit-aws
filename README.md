@@ -84,7 +84,7 @@ This composite will monitor all supported AWS services and report best practices
 ### `AUDIT_AWS_SNS_ALERT_LIST`:
   * description: Which alerts would you like to check for? Default is all SNS alerts. Choices are sns-inventory
 
-### `S3_BUCKET_NAME`:
+### `AUDIT_AWS_S3_NOTIFICATION_BUCKET_NAME`:
   * description: Enter S3 bucket name to upload reports. (Optional)
 
 ## Tags
