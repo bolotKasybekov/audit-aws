@@ -208,7 +208,7 @@ variables:
       - eu-west-1
       - eu-west-2
       - sa-east-1
-  S3_BUCKET_NAME:
+  AUDIT_AWS_S3_NOTIFICATION_BUCKET_NAME:
     required: false
     type: string
     default:
