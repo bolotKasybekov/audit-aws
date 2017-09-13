@@ -406,8 +406,8 @@ coreo_aws_s3_policy "cloudcoreo-audit-aws-policy" do
 ,
 "Action": "s3:*",
 "Resource": [
-"arn:aws:s3:::${AUDIT_AWS_S3_NOTIFICATION_BUCKET_NAME}/*",
-"arn:aws:s3:::${AUDIT_AWS_S3_NOTIFICATION_BUCKET_NAME}"
+"arn:aws:s3:::bucket-${AUDIT_AWS_S3_NOTIFICATION_BUCKET_NAME}/*",
+"arn:aws:s3:::bucket-${AUDIT_AWS_S3_NOTIFICATION_BUCKET_NAME}"
 ]
 }
 ]
@@ -427,7 +427,7 @@ coreo_uni_util_notify "cloudcoreo-audit-aws-s3" do
   payload 'COMPOSITE::coreo_uni_util_jsrunner.tags-to-notifiers-array-aws.report'
   endpoint ({
       object_name: 'aws-json',
-      bucket_name: '${AUDIT_AWS_S3_NOTIFICATION_BUCKET_NAME}',
+      bucket_name: 'bucket-${AUDIT_AWS_S3_NOTIFICATION_BUCKET_NAME}',
       folder: 'aws/PLAN::name',
       properties: {}
   })
